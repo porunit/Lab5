@@ -1,0 +1,52 @@
+---
+- id: 1
+  name: John
+  coordinates:
+    x: 20
+    y: 30
+  creationDate: '2023-01-28'
+  studentCount: 23
+  formOfEducation: FULL_TIME_EDUCATION
+  semesterEnum: SECOND
+  groupAdmin:
+    name: dodik
+    weight: 228
+    eyeColor: YELLOW
+    location:
+      x: 2.4
+      y: 23
+      z: 12334
+- id: 2
+  name: Victor
+  coordinates:
+    x: 31
+    y: 34
+  creationDate: '2023-02-12'
+  studentCount: 32
+  formOfEducation: EVENING_CLASSES
+  semesterEnum: SIXTH
+  groupAdmin:
+    name: oleg
+    weight: 123
+    eyeColor: BLACK
+    location:
+      x: 3.432
+      y: 232
+      z: 123343
+- id: 3
+  name: John
+  coordinates:
+    x: 20
+    y: 30
+  creationDate: '2023-02-09'
+  studentCount: 34
+  formOfEducation: FULL_TIME_EDUCATION
+  semesterEnum: SECOND
+  groupAdmin:
+    name: bebrik
+    weight: 344
+    eyeColor: RED
+    location:
+      x: 34.3
+      y: 234
+      z: 4234
