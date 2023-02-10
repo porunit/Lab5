@@ -1,2 +1,7 @@
-package data;public enum Color {
+package data;
+
+public enum Color {
+    RED,
+    BLACK,
+    YELLOW;
 }

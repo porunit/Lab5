@@ -1,2 +1,7 @@
-package data;public enum Semester {
+package data;
+
+public enum Semester {
+    SECOND,
+    THIRD,
+    SIXTH;
 }

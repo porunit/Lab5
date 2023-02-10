@@ -1,18 +1,65 @@
-package commandManager;
+package executionManager;
 
-import data.Color;
-import data.FormOfEducation;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class InputManager {
-    static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
-    static String input(String string){
-        if(string.equals("x") || string.equals("y") || string.equals("z"))
-            System.out.print(string+": ");
-        else System.out.print("Введите " + string);
-        return scanner.next().trim();
+    private static String input(String message){
+        System.out.print(message);
+        String string = scanner.nextLine();
+        if(string == null || string.isBlank() || string.isEmpty())
+            return null;
+        return string.trim();
     }
 
+    private static String input(){
+        String string = scanner.nextLine();
+        if(string == null || string.isBlank() || string.isEmpty())
+            return null;
+        return string.trim();
+    }
+
+
+    static <T extends Enum<T>> T inputEnum(Class<T> enumName, String message, boolean isNullable){
+        while(true){
+            var value = InputManager.input(message);
+            try{
+                return (T) Enum.valueOf(enumName, Objects.requireNonNull(value));
+            } catch (IllegalArgumentException | NullPointerException e) {
+                if(isNullable && value == null) return null;
+               else System.out.println("Incorrect input");
+            }
+        }
+    }
+
+    static <T> T inputString(Class<T> dataType, String message, boolean isNullable){
+        while(true){
+            System.out.print(message);
+            try {
+                if(dataType == String.class){
+                    return (T) Objects.requireNonNull(InputManager.input());
+                }
+                if (dataType == Double.class) {
+                    return dataType.cast(Double.parseDouble(Objects.requireNonNull(InputManager.input())));
+                } else if (dataType == Integer.class) {
+                    return dataType.cast(Integer.parseInt(Objects.requireNonNull(InputManager.input())));
+                } else if (dataType == Long.class) {
+                    return dataType.cast(Long.parseLong(Objects.requireNonNull(InputManager.input())));
+                } else if (dataType == Float.class) {
+                    return dataType.cast(Float.parseFloat(Objects.requireNonNull(InputManager.input())));
+                } else {
+                    System.out.println("Unsupported number class");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Incorrect input format");
+            }
+            catch (NullPointerException e){
+                if(!isNullable) System.out.println("Incorrect input format");
+                else return null;
+            }
+        }
+    }
 }

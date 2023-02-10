@@ -1,17 +1,14 @@
-package commandManager;
+package executionManager;
 
 import Interfaces.ICollectionManager;
 import data.*;
-import exceptions.CommandException;
-import exceptions.EmptyCollectionException;
-import exceptions.InvalidCommandArgumentException;
 
 import java.util.HashSet;
 import java.util.Stack;
 
 class CollectionManager implements ICollectionManager {
     protected Stack<StudyGroup> groupStack;
-    private HashSet<Long> uniqueId = new HashSet<>();
+    protected HashSet<Long> uniqueId = new HashSet<>();
     public CollectionManager(Stack<StudyGroup> stack){
         this.groupStack = stack;
     }
@@ -24,38 +21,67 @@ class CollectionManager implements ICollectionManager {
     }
 
     public void add(String name){
-        Float x = Float.parseFloat(InputManager.input("координаты\nx: "));
-        Long y = Long.valueOf(InputManager.input("y"));
-        Integer studentCount = Integer.valueOf(InputManager.input("количество студентов: "));
-        FormOfEducation formOfEducation = FormOfEducation.valueOf(InputManager.input("форму обучения(DISTANCE_EDUCATION,FULL_TIME_EDUCATION, EVENING_CLASSES): "));
-        Semester semester = Semester.valueOf(InputManager.input("номер семестра(SECOND,THIRD,SIXTH): "));
-        String nameAdmin = InputManager.input("данные о старосте\nВведите имя: ");
-        Long weightAdmin = Long.valueOf(InputManager.input("вес: "));
-        Color eyeColorAdmin = Color.valueOf(InputManager.input("цвет глаз: "));
-        float xAdmin = Float.parseFloat(InputManager.input("локацию\nx: "));
-        Integer yAdmin = Integer.valueOf(InputManager.input("y"));
-        int zAdmin = Integer.parseInt(InputManager.input("z"));
+        Float x = InputManager.inputString(Float.class,"Coordinates\nx(Float): ", false);
+        Long y = InputManager.inputString(Long.class,"y(Long): ", false);
+        Coordinates coordinates = new Coordinates(x,y);
+        Integer studentCount = InputManager.inputString(Integer.class,"Students count(Integer): ", false);
+        FormOfEducation formOfEducation = InputManager.inputEnum(FormOfEducation.class,"Form of education(DISTANCE_EDUCATION,FULL_TIME_EDUCATION, EVENING_CLASSES): ", true);
+        Semester semester = InputManager.inputEnum(Semester.class,"Semester(SECOND,THIRD,SIXTH): ", false);
+        String nameAdmin = InputManager.inputString(String.class,"Group admin\nName(String): ", false);
+        Long weightAdmin = InputManager.inputString(Long.class,"Weight(Long): ", false);
+        Color eyeColorAdmin = InputManager.inputEnum(Color.class,"Eye color(RED,YELLOW,BLACK): ", true);
+        float xAdmin = InputManager.inputString(Float.class,"Location\nx(float): ",false);
+        Integer yAdmin = InputManager.inputString(Integer.class,"y(Integer)",false);
+        int zAdmin = InputManager.inputString(Integer.class,"z(int)",false);
 
         Location location = new Location(xAdmin, yAdmin, zAdmin);
         Person groupAdmin = new Person(nameAdmin, weightAdmin, eyeColorAdmin, location);
-        Coordinates coordinates = new Coordinates(x,y);
+
         StudyGroup studyGroup = new StudyGroup(createID(), name, coordinates, java.time.ZonedDateTime.now(),studentCount,formOfEducation,semester,groupAdmin);
-        groupStack.push(studyGroup);
+        groupStack.add(studyGroup);
     }
 
+    public void add(String name, long id){
+        Float x = InputManager.inputString(Float.class,"Coordinates\nx(Float): ", false);
+        Long y = InputManager.inputString(Long.class,"y(Long): ", false);
+        Coordinates coordinates = new Coordinates(x,y);
+        Integer studentCount = InputManager.inputString(Integer.class,"Students count(Integer): ", false);
+        FormOfEducation formOfEducation = InputManager.inputEnum(FormOfEducation.class,"Form of education(DISTANCE_EDUCATION,FULL_TIME_EDUCATION, EVENING_CLASSES): ", true);
+        Semester semester = InputManager.inputEnum(Semester.class,"Semester(SECOND,THIRD,SIXTH): ", false);
+        String nameAdmin = InputManager.inputString(String.class,"Group admin\nName(String): ", false);
+        Long weightAdmin = InputManager.inputString(Long.class,"Weight(Long): ", false);
+        Color eyeColorAdmin = InputManager.inputEnum(Color.class,"Eye color(RED,YELLOW,BLACK): ", true);
+        float xAdmin = InputManager.inputString(Float.class,"Location\nx(float): ",false);
+        Integer yAdmin = InputManager.inputString(Integer.class,"y(Integer)",false);
+        int zAdmin = InputManager.inputString(Integer.class,"z(int)",false);
+
+        Location location = new Location(xAdmin, yAdmin, zAdmin);
+        Person groupAdmin = new Person(nameAdmin, weightAdmin, eyeColorAdmin, location);
+
+        StudyGroup studyGroup = new StudyGroup(id, name, coordinates, java.time.ZonedDateTime.now(),studentCount,formOfEducation,semester,groupAdmin);
+        groupStack.add(studyGroup);
+    }
     @Override
     public void update(long id) {
         if(uniqueId.contains(id)) {
             for (StudyGroup group : groupStack)
-                if (group.getId() == id) add(InputManager.input("Имя: "));
+                if (group.getId() == id) {
+                    groupStack.remove(group);
+                    add(InputManager.inputString(String.class,"Имя: ", false),id);
+                }
         }
     }
-
-    @Override
-    public void removeById(String id) {
-
+    public void removeById(long id){
+        StudyGroup group = null;
+        if(uniqueId.contains(id)) {
+            for (var it : groupStack)
+                if (it.getId() == id) {
+                    group =it;
+                }
+            assert group != null;
+            groupStack.remove(group);
+        }
     }
-
     @Override
     public void clear() {
 
