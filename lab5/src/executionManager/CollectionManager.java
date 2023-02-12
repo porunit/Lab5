@@ -10,8 +10,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import data.StudyGroup;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 import java.util.*;
 
@@ -49,7 +48,7 @@ class CollectionManager implements ICollectionManager {
         Location location = new Location(xAdmin, yAdmin, zAdmin);
         Person groupAdmin = new Person(nameAdmin, weightAdmin, eyeColorAdmin, location);
 
-        StudyGroup studyGroup = new StudyGroup(createID(), name, coordinates, java.time.ZonedDateTime.now(),studentCount,formOfEducation,semester,groupAdmin);
+        StudyGroup studyGroup = new StudyGroup(createID(), name, coordinates, studentCount,formOfEducation,semester,groupAdmin);
         groupStack.add(studyGroup);
     }
     public StudyGroup add(){
@@ -70,7 +69,7 @@ class CollectionManager implements ICollectionManager {
         Location location = new Location(xAdmin, yAdmin, zAdmin);
         Person groupAdmin = new Person(nameAdmin, weightAdmin, eyeColorAdmin, location);
 
-        StudyGroup group = new StudyGroup(createID(), name, coordinates, java.time.ZonedDateTime.now(),studentCount,formOfEducation,semester,groupAdmin);;
+        StudyGroup group = new StudyGroup(createID(), name, coordinates, studentCount,formOfEducation,semester,groupAdmin);;
         return group;
     }
     public void add(String name, long id){
@@ -90,7 +89,7 @@ class CollectionManager implements ICollectionManager {
         Location location = new Location(xAdmin, yAdmin, zAdmin);
         Person groupAdmin = new Person(nameAdmin, weightAdmin, eyeColorAdmin, location);
 
-        StudyGroup studyGroup = new StudyGroup(id, name, coordinates, java.time.ZonedDateTime.now(),studentCount,formOfEducation,semester,groupAdmin);
+        StudyGroup studyGroup = new StudyGroup(id, name, coordinates, studentCount,formOfEducation,semester,groupAdmin);
         groupStack.add(studyGroup);
     }
     @Override
@@ -154,7 +153,7 @@ class CollectionManager implements ICollectionManager {
 
     @Override
     public void addIfMin() {
-
+        System.out.println("Weird command description");
     }
 
     @Override
@@ -188,7 +187,8 @@ class CollectionManager implements ICollectionManager {
     }
     public void load() {
         try {
-            groupStack = mapper.readValue(new File(setPath()), new TypeReference<>() {});
+            groupStack = mapper.readValue(new File(setPath()), new TypeReference<Stack<StudyGroup>>() {});
+            System.out.println("File was loaded");
         }
         catch (RuntimeException | DatabindException e) {
             System.out.println("'" + path + "' contains broken data");
@@ -197,14 +197,19 @@ class CollectionManager implements ICollectionManager {
         catch (IOException e) {
             System.out.println("Unable to load '" + path + "' file with data\n" + e.getMessage());
         }
+        joinId();
     }
-    public void load1() throws IOException {
+
+    private void joinId(){
+        for (var it : groupStack) {
+            uniqueId.add(it.getId());
+        }
     }
-    public void save(){
+    public void save() {
         try {
             mapper.writeValue(new File(setPath()), groupStack);
-        } catch (IOException e) {
-            System.out.println("Error while loading");
+        } catch (IOException e ){
+            System.out.println("Error while saving");
         }
     }
 }

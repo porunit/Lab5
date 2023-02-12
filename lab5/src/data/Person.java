@@ -6,6 +6,7 @@ public class Person {
     private Color eyeColor; //Поле может быть null
     private Location location; //Поле не может быть null
 
+    public Person(){}
     public Person(String name, Long weight, Color eyeColor, Location location){
         this.name = name;
         this.weight = weight;
@@ -13,6 +14,21 @@ public class Person {
         this.location = location;
     }
 
+    public void setEyeColor(Color eyeColor) {
+        this.eyeColor = eyeColor;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setWeight(Long weight) {
+        this.weight = weight;
+    }
     public Color getEyeColor() {
         return eyeColor;
     }

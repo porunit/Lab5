@@ -15,8 +15,8 @@ public class StudyGroup {
     @NotNull private Semester semesterEnum;
     @Nullable private Person groupAdmin;
 
-    public StudyGroup(long id, String name, Coordinates coordinates,
-                      java.time.ZonedDateTime creationDate, Integer studentsCount,
+    public StudyGroup(){}
+    public StudyGroup(long id, String name, Coordinates coordinates, Integer studentsCount,
                       FormOfEducation formOfEducation, Semester semesterEnum, Person groupAdmin){
             if (id <= 0)
                 throw new WrongDataTypeException("Wrong data type");
@@ -27,7 +27,7 @@ public class StudyGroup {
             if (coordinates == null)
                 throw new WrongDataTypeException("Wrong data type");
             this.coordinates = coordinates;
-            this.creationDate = creationDate;
+            creationDate = java.time.ZonedDateTime.now();
             this.formOfEducation = formOfEducation;
             if (studentsCount < 0)
                 this.studentsCount = 0;
@@ -46,10 +46,10 @@ public class StudyGroup {
         return "- id: "+id+"\n" +
                 "  name: "+name+"\n" +
                 "  coordinates:\n" +
-                "    x: "+coordinates.getX()+"\n" +
+                "    x: "+coordinates.getX()+"f\n" +
                 "    y: "+coordinates.getY()+"\n" +
                 "  creationDate: "+creationDate+"\n" +
-                "  studentCount: "+studentsCount+"\n" +
+                "  studentsCount: "+studentsCount+"\n" +
                 "  formOfEducation: "+formOfEducation+"\n" +
                 "  semesterEnum: "+semesterEnum+"\n" +
                 "  groupAdmin:\n" +

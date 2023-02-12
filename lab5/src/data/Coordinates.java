@@ -4,8 +4,9 @@ public class Coordinates {
     private Float x; //Значение поля должно быть больше -156, Поле не может быть null
     private Long y; //Поле не может быть null
 
+    public Coordinates(){}
     public Coordinates(Float x, Long y){
-        if(x>-155) this.x = x;
+        if(x>-155) this.x = Float.valueOf(x);
         else this.x = Float.valueOf(-155);
         this.y = y;
     }
@@ -16,7 +17,7 @@ public class Coordinates {
     }
 
     public void setX(Float x) {
-        this.x = x;
+        this.x = Float.valueOf(x);
     }
 
     public Long getY() {

@@ -2,19 +2,17 @@ package executionManager;
 
 import data.Semester;
 
-import java.io.IOException;
-
 class CommandManager {
-    private CollectionManager collectionManager;
+    protected CollectionManager collectionManager;
     public CommandManager(CollectionManager collectionManager){
         this.collectionManager = collectionManager;
     }
 
-     public void idContainsComands(String idString, String mode){
+     public void idContainsCommands(String idString, String mode){
         long id = 0;
         boolean flag = false;
         try{
-            id = Long.valueOf(idString);
+            id = Long.parseLong(idString);
         } catch (NumberFormatException e){
             System.out.println("id must be number");
             flag = true;
@@ -27,7 +25,7 @@ class CommandManager {
     }
 
     public void add(String name) {
-        if (name.trim() != null && !name.trim().equals("")) {
+        if (!name.trim().equals("")) {
             collectionManager.add(name);
         }
     }
@@ -65,15 +63,18 @@ class CommandManager {
         System.out.println("Wrong index format");
         }
     }
-    public void load() throws IOException {
-        collectionManager.load1();
+    public void load(){
+        collectionManager.load();
+    }
+    public void addIfMin(){
+        collectionManager.addIfMin();
     }
     public void save(){
         collectionManager.save();
     }
     public void info(){
         System.out.println("type: Stack\n" +
-                "creationdate: "+ java.time.ZonedDateTime.now()+"\n" +
+                "creation's date: "+ java.time.ZonedDateTime.now()+"\n" +
                 "size: "+ collectionManager.groupStack.size());
     }
     public void help(){
