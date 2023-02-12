@@ -4,7 +4,7 @@ package executionManager;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class InputManager {
+class InputManager {
     private static Scanner scanner = new Scanner(System.in);
 
     private static String input(String message){
@@ -41,8 +41,7 @@ public class InputManager {
             try {
                 if(dataType == String.class){
                     return (T) Objects.requireNonNull(InputManager.input());
-                }
-                if (dataType == Double.class) {
+                } else if (dataType == Double.class) {
                     return dataType.cast(Double.parseDouble(Objects.requireNonNull(InputManager.input())));
                 } else if (dataType == Integer.class) {
                     return dataType.cast(Integer.parseInt(Objects.requireNonNull(InputManager.input())));

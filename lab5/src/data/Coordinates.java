@@ -5,15 +5,25 @@ public class Coordinates {
     private Long y; //Поле не может быть null
 
     public Coordinates(Float x, Long y){
-        this.x = x;
+        if(x>-155) this.x = x;
+        else this.x = Float.valueOf(-155);
         this.y = y;
     }
+
 
     public Float getX() {
         return x;
     }
 
+    public void setX(Float x) {
+        this.x = x;
+    }
+
     public Long getY() {
         return y;
+    }
+
+    public void setY(Long y) {
+        this.y = y;
     }
 }

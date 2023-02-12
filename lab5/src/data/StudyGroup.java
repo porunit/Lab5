@@ -4,15 +4,16 @@ import exceptions.WrongDataTypeException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+
 public class StudyGroup {
-    private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
-    private String name; //Поле не может быть null, Строка не может быть пустой
-    private Coordinates coordinates; //Поле не может быть null
-    @NotNull private java.time.ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
-    @Nullable private Integer studentsCount; //Значение поля должно быть больше 0, Поле может быть null
-    @Nullable private FormOfEducation formOfEducation; //Поле может быть null
-    @NotNull private Semester semesterEnum; //Поле не может быть null
-    @Nullable private Person groupAdmin; //Поле может быть null
+    private long id;
+    private String name;
+    private Coordinates coordinates;
+    @NotNull private java.time.ZonedDateTime creationDate;
+    @Nullable private Integer studentsCount;
+    @Nullable private FormOfEducation formOfEducation;
+    @NotNull private Semester semesterEnum;
+    @Nullable private Person groupAdmin;
 
     public StudyGroup(long id, String name, Coordinates coordinates,
                       java.time.ZonedDateTime creationDate, Integer studentsCount,
@@ -26,20 +27,17 @@ public class StudyGroup {
             if (coordinates == null)
                 throw new WrongDataTypeException("Wrong data type");
             this.coordinates = coordinates;
+            this.creationDate = creationDate;
             this.formOfEducation = formOfEducation;
-            if (studentsCount <= 0)
-                throw new WrongDataTypeException("Wrong data type");
-            this.studentsCount = studentsCount;
+            if (studentsCount < 0)
+                this.studentsCount = 0;
+            else this.studentsCount = studentsCount;
             if(semesterEnum == null)
                 throw new WrongDataTypeException("Wrong data type");
             else this.semesterEnum = semesterEnum;
             this.groupAdmin = groupAdmin;
         }
-    
 
-    public void setId(long id) {
-        this.id = id;
-    }
     public long getId(){
         return id;
     }
@@ -63,4 +61,66 @@ public class StudyGroup {
                 "      y: "+groupAdmin.getLocation().getY()+"\n" +
                 "      z: "+groupAdmin.getLocation().getZ();
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public java.time.ZonedDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(java.time.ZonedDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Integer getStudentsCount() {
+        return studentsCount;
+    }
+
+    public void setStudentsCount(Integer studentsCount) {
+        this.studentsCount = studentsCount;
+    }
+
+    public FormOfEducation getFormOfEducation() {
+        return formOfEducation;
+    }
+
+    public void setFormOfEducation(FormOfEducation formOfEducation) {
+        this.formOfEducation = formOfEducation;
+    }
+
+    public Semester getSemester() {
+        return semesterEnum;
+    }
+
+    public void setSemesterEnum(Semester semesterEnum) {
+        this.semesterEnum = semesterEnum;
+    }
+
+    public Person getGroupAdmin() {
+        return groupAdmin;
+    }
+
+    public void setGroupAdmin(Person groupAdmin) {
+        this.groupAdmin = groupAdmin;
+    }
+
 }
+
