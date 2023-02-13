@@ -4,12 +4,16 @@ import exceptions.WrongDataTypeException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class StudyGroup {
     private long id;
     private String name;
     private Coordinates coordinates;
-    @NotNull private java.time.ZonedDateTime creationDate;
+    @NotNull private java.time.ZonedDateTime creationDateWithoutFormat = ZonedDateTime.now();
+    private String creationDate = creationDateWithoutFormat.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     @Nullable private Integer studentsCount;
     @Nullable private FormOfEducation formOfEducation;
     @NotNull private Semester semesterEnum;
@@ -27,7 +31,7 @@ public class StudyGroup {
             if (coordinates == null)
                 throw new WrongDataTypeException("Wrong data type");
             this.coordinates = coordinates;
-            creationDate = java.time.ZonedDateTime.now();
+            this.creationDateWithoutFormat = java.time.ZonedDateTime.now();
             this.formOfEducation = formOfEducation;
             if (studentsCount < 0)
                 this.studentsCount = 0;
@@ -47,7 +51,7 @@ public class StudyGroup {
                 "  name: "+name+"\n" +
                 "  coordinates:\n" +
                 "    x: "+coordinates.getX()+"f\n" +
-                "    y: "+coordinates.getY()+"\n" +
+                "    \"y\": "+coordinates.getY()+"\n" +
                 "  creationDate: "+creationDate+"\n" +
                 "  studentsCount: "+studentsCount+"\n" +
                 "  formOfEducation: "+formOfEducation+"\n" +
@@ -57,8 +61,8 @@ public class StudyGroup {
                 "    weight: "+groupAdmin.getWeight()+"\n" +
                 "    eyeColor: "+groupAdmin.getEyeColor()+"\n" +
                 "    location:\n" +
-                "      x: "+groupAdmin.getLocation().getX()+"\n" +
-                "      y: "+groupAdmin.getLocation().getY()+"\n" +
+                "      x: "+groupAdmin.getLocation().getX()+"f\n" +
+                "      \"y\": "+groupAdmin.getLocation().getY()+"\n" +
                 "      z: "+groupAdmin.getLocation().getZ();
     }
 
@@ -82,12 +86,12 @@ public class StudyGroup {
         this.coordinates = coordinates;
     }
 
-    public java.time.ZonedDateTime getCreationDate() {
+    public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(java.time.ZonedDateTime creationDate) {
-        this.creationDate = creationDate;
+    public void setCreationDate(String formattedDateTime) {
+        this.creationDate = formattedDateTime;
     }
 
     public Integer getStudentsCount() {

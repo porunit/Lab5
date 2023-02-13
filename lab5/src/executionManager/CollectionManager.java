@@ -11,7 +11,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import data.StudyGroup;
 
 import java.io.*;
-
 import java.util.*;
 
 class CollectionManager implements ICollectionManager {
@@ -105,17 +104,18 @@ class CollectionManager implements ICollectionManager {
     public void removeById(long id){
         StudyGroup group = null;
         if(uniqueId.contains(id)) {
+            uniqueId.remove(id);
             for (var it : groupStack)
                 if (it.getId() == id) {
                     group =it;
                 }
-            assert group != null;
             groupStack.remove(group);
         }
     }
     @Override
     public void clear() {
         groupStack.clear();
+        uniqueId.clear();
     }
 
     @Override
@@ -205,11 +205,24 @@ class CollectionManager implements ICollectionManager {
             uniqueId.add(it.getId());
         }
     }
-    public void save() {
+    public void save1() {
         try {
             mapper.writeValue(new File(setPath()), groupStack);
         } catch (IOException e ){
             System.out.println("Error while saving");
+        }
+    }
+
+    public void save(){
+        try (FileWriter writer = new FileWriter(setPath());
+             BufferedWriter bw = new BufferedWriter(writer)) {
+            bw.write("---\n");
+            for(StudyGroup group: groupStack) {
+                bw.write(group.toString()+"\n");
+            }
+            System.out.println("Text written to the file successfully.");
+        } catch (IOException e) {
+            System.err.format("IOException: %s%n", e);
         }
     }
 }

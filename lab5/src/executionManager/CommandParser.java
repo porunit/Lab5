@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 class CommandParser {
     private final CommandManager commandM;
-    private final String[] commandsWithArgument = new String[]{"add","update", "removeById", "filter_by_semester_enum","insert_at","add_if_min","execute_script"};
+    private final String[] commandsWithArgument = new String[]{"add","update", "remove_by_id", "filter_by_semester_enum","insert_at","add_if_min","execute_script"};
     private final String[] commandsWithoutArgument = new String[]{"show", "print_field_descending_form_of_education", "print_descending","save","info","help"};
 
     public CommandParser(CommandManager commandM){
@@ -25,16 +25,17 @@ class CommandParser {
                 if(array.length>2) System.out.println("Wrong argument format");
                 else if(array.length!=2 || array[1] == null || array[1].equals(""))
                     System.out.println("Missed command argument");
-                switch (node) {
-                    case "add" -> commandM.add(array[1]);
-                    case "update" -> commandM.idContainsCommands(array[1], "update");
-                    case "removeById" -> commandM.idContainsCommands(array[1], "remove");
-                    case "filter_by_semester_enum" -> commandM.filterBySemesterEnum(array[1]);
-                    case "insert_at" -> commandM.insertAt(array[1]);
-                    case "add_if_min" -> commandM.addIfMin();
-                    case "execute_script" -> executionScript(array[1]);
+                else {
+                    switch (node) {
+                        case "add" -> commandM.add(array[1]);
+                        case "update" -> commandM.idContainsCommands(array[1], "update");
+                        case "remove_by_id" -> commandM.idContainsCommands(array[1], "remove");
+                        case "filter_by_semester_enum" -> commandM.filterBySemesterEnum(array[1]);
+                        case "insert_at" -> commandM.insertAt(array[1]);
+                        case "add_if_min" -> commandM.addIfMin();
+                        case "execute_script" -> executionScript(array[1]);
+                    }
                 }
-
             }
             else if(array.length == 1){
                 switch (node) {

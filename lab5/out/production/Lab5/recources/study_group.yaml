@@ -1,18 +1,52 @@
 ---
-- id: 1
-  name: John
+- id: 2
+  name: 223
   coordinates:
-    x: 21.32f
-    y: 30
-  creationDate: null
-  studentsCount: 23
-  formOfEducation: FULL_TIME_EDUCATION
+    x: 2.3f
+    "y": 12
+  creationDate: 2023-02-13
+  studentsCount: 3
+  formOfEducation: null
+  semesterEnum: THIRD
+  groupAdmin:
+    name: qwe
+    weight: 123
+    eyeColor: RED
+    location:
+      x: 23.0f
+      "y": 12
+      z: 43
+- id: 3
+  name: bobik
+  coordinates:
+    x: 123.0f
+    "y": 32
+  creationDate: 2023-02-13
+  studentsCount: 12
+  formOfEducation: null
   semesterEnum: SECOND
   groupAdmin:
-    name: dodik
-    weight: 228
-    eyeColor: YELLOW
+    name: we
+    weight: 123
+    eyeColor: RED
     location:
-      x: 2
-      y: 23
-      z: 12334
+      x: 1.0f
+      "y": 32
+      z: 1
+- id: 4
+  name: bobik
+  coordinates:
+    x: 1.23f
+    "y": 12
+  creationDate: 2023-02-13
+  studentsCount: 23
+  formOfEducation: EVENING_CLASSES
+  semesterEnum: SECOND
+  groupAdmin:
+    name: qwe
+    weight: 12
+    eyeColor: RED
+    location:
+      x: 334.2f
+      "y": 1
+      z: 3

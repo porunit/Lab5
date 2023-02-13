@@ -16,7 +16,7 @@ public class ConsoleManager {
         }catch (NoSuchFieldError e){
             System.out.println("Error While loading");}
         while (true){
-            System.out.print("Enter command: ");
+            System.out.print("Enter command(type help to see command list): ");
             String command = scanner.nextLine().trim();
             if (command.equals("exit")) break;
             parser.parse(command);
