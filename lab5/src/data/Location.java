@@ -1,5 +1,7 @@
 package data;
 
+import exceptions.WrongDataTypeException;
+
 public class Location {
     private float x;
     private Integer y; //Поле не может быть null
@@ -29,7 +31,8 @@ public class Location {
     }
 
     public void setY(Integer y) {
-        this.y = y;
+        if (y!=null) this.y = y;
+        else throw new WrongDataTypeException();
     }
 
     public void setZ(int z) {

@@ -1,5 +1,7 @@
 package data;
 
+import exceptions.WrongDataTypeException;
+
 public class Coordinates {
     private Float x; //Значение поля должно быть больше -156, Поле не может быть null
     private Long y; //Поле не может быть null
@@ -17,7 +19,8 @@ public class Coordinates {
     }
 
     public void setX(Float x) {
-        this.x = Float.valueOf(x);
+        if (x!=null && x>-156)this.x = x;
+        else throw new WrongDataTypeException();
     }
 
     public Long getY() {
@@ -25,6 +28,7 @@ public class Coordinates {
     }
 
     public void setY(Long y) {
-        this.y = y;
+        if (y!=null) this.y = y;
+        else throw new WrongDataTypeException();
     }
 }

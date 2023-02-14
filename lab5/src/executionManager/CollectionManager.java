@@ -195,7 +195,7 @@ class CollectionManager implements ICollectionManager {
             groupStack.clear();
         }
         catch (IOException e) {
-            System.out.println("Unable to load '" + path + "' file with data\n" + e.getMessage());
+            System.out.println("Unable to load '" + path + "' No such file\n");
         }
         joinId();
     }
@@ -203,13 +203,6 @@ class CollectionManager implements ICollectionManager {
     private void joinId(){
         for (var it : groupStack) {
             uniqueId.add(it.getId());
-        }
-    }
-    public void save1() {
-        try {
-            mapper.writeValue(new File(setPath()), groupStack);
-        } catch (IOException e ){
-            System.out.println("Error while saving");
         }
     }
 

@@ -10,10 +10,10 @@ import java.time.format.DateTimeFormatter;
 
 public class StudyGroup {
     private long id;
-    private String name;
-    private Coordinates coordinates;
-    @NotNull private java.time.ZonedDateTime creationDateWithoutFormat = ZonedDateTime.now();
-    private String creationDate = creationDateWithoutFormat.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    @NotNull private String name;
+    @NotNull private Coordinates coordinates;
+    @NotNull private java.time.ZonedDateTime creationDateWithoutFormat = java.time.ZonedDateTime.now();
+    @NotNull private String creationDate = creationDateWithoutFormat.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     @Nullable private Integer studentsCount;
     @Nullable private FormOfEducation formOfEducation;
     @NotNull private Semester semesterEnum;
@@ -33,8 +33,7 @@ public class StudyGroup {
             this.coordinates = coordinates;
             this.creationDateWithoutFormat = java.time.ZonedDateTime.now();
             this.formOfEducation = formOfEducation;
-            if (studentsCount < 0)
-                this.studentsCount = 0;
+            if (studentsCount!=null && studentsCount < 0) this.studentsCount = 1;
             else this.studentsCount = studentsCount;
             if(semesterEnum == null)
                 throw new WrongDataTypeException("Wrong data type");
@@ -47,7 +46,8 @@ public class StudyGroup {
     }
 
     public String toString(){
-        return "- id: "+id+"\n" +
+
+       if(groupAdmin!=null) return "- id: "+id+"\n" +
                 "  name: "+name+"\n" +
                 "  coordinates:\n" +
                 "    x: "+coordinates.getX()+"f\n" +
@@ -64,10 +64,21 @@ public class StudyGroup {
                 "      x: "+groupAdmin.getLocation().getX()+"f\n" +
                 "      \"y\": "+groupAdmin.getLocation().getY()+"\n" +
                 "      z: "+groupAdmin.getLocation().getZ();
+
+       else return "- id: "+id+"\n" +
+               "  name: "+name+"\n" +
+               "  coordinates:\n" +
+               "    x: "+coordinates.getX()+"f\n" +
+               "    \"y\": "+coordinates.getY()+"\n" +
+               "  creationDate: "+creationDate+"\n" +
+               "  studentsCount: "+studentsCount+"\n" +
+               "  formOfEducation: "+formOfEducation+"\n" +
+               "  semesterEnum: "+semesterEnum+"\n";
     }
 
     public void setId(long id) {
-        this.id = id;
+        if(id <= 0) throw new WrongDataTypeException();
+         else this.id = id;
     }
 
     public String getName() {
@@ -75,7 +86,8 @@ public class StudyGroup {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name != null)this.name = name;
+        else throw new WrongDataTypeException();
     }
 
     public Coordinates getCoordinates() {
@@ -91,7 +103,8 @@ public class StudyGroup {
     }
 
     public void setCreationDate(String formattedDateTime) {
-        this.creationDate = formattedDateTime;
+       if(formattedDateTime!=null) this.creationDate = formattedDateTime;
+       else throw new WrongDataTypeException();
     }
 
     public Integer getStudentsCount() {
@@ -115,7 +128,8 @@ public class StudyGroup {
     }
 
     public void setSemesterEnum(Semester semesterEnum) {
-        this.semesterEnum = semesterEnum;
+       if(semesterEnum != null) this.semesterEnum = semesterEnum;
+       else throw new WrongDataTypeException();
     }
 
     public Person getGroupAdmin() {
