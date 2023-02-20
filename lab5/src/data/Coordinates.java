@@ -8,8 +8,7 @@ public class Coordinates {
 
     public Coordinates(){}
     public Coordinates(Float x, Long y){
-        if(x>-155) this.x = Float.valueOf(x);
-        else this.x = Float.valueOf(-155);
+        setX(x);
         this.y = y;
     }
 
@@ -19,8 +18,10 @@ public class Coordinates {
     }
 
     public void setX(Float x) {
-        if (x!=null && x>-156)this.x = x;
-        else throw new WrongDataTypeException();
+        float minX = -156;
+        if (x == null) throw new WrongDataTypeException();
+        else if (x<minX) this.x = minX+1;
+        else this.x = x;
     }
 
     public Long getY() {

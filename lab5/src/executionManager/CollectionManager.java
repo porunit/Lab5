@@ -156,10 +156,6 @@ class CollectionManager implements ICollectionManager {
         System.out.println("Weird command description");
     }
 
-    @Override
-    public void removeAt(int ind) {
-        groupStack.remove(ind);
-    }
 
     @Override
     public void insertAt(int ind) {

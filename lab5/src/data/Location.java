@@ -10,7 +10,7 @@ public class Location {
     public Location(){}
     public Location(float x, Integer y, int z){
         this.x = x;
-        this.y = y;
+        setY(y);
         this.z = z;
     }
 

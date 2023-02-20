@@ -12,7 +12,6 @@ public interface ICollectionManager {
     void printDescending();
     void filterBySemesterEnum(Semester semester);
     void addIfMin();
-    void removeAt(int ind);
     void insertAt(int ind);
 
 

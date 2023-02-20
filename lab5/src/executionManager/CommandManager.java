@@ -1,14 +1,20 @@
 package executionManager;
 
+import Interfaces.ICommandManager;
+import commandEnums.Mode;
 import data.Semester;
 
-class CommandManager {
+import java.time.format.DateTimeFormatter;
+
+class CommandManager implements ICommandManager {
     protected CollectionManager collectionManager;
+    private CommandDescriptionManager commandsDescription = new CommandDescriptionManager();
     public CommandManager(CollectionManager collectionManager){
         this.collectionManager = collectionManager;
     }
 
-     public void idContainsCommands(String idString, String mode){
+
+     public void idContainsCommands(String idString, Mode mode){
         long id = 0;
         boolean flag = false;
         try{
@@ -20,8 +26,8 @@ class CommandManager {
         if (collectionManager.groupStack.empty() && !flag) System.out.println("Collection is empty");
         else if (!collectionManager.uniqueId.contains(id) && !flag) {
             System.out.println("id doesn't exists");
-        }else if(mode.equals("update")) collectionManager.update(id);
-        else if(mode.equals("remove"))collectionManager.removeById(id);
+        }else if(mode == Mode.UPDATE) collectionManager.update(id);
+        else if(mode == Mode.REMOVE)collectionManager.removeById(id);
     }
 
     public void add(String name) {
@@ -52,9 +58,9 @@ class CommandManager {
             System.out.println("No such semester");
         }
     }
-    public void insertAt(String index){
+    public void insertAt(String parameter){
         try{
-            int ind = Integer.parseInt(index);
+            int ind = Integer.parseInt(parameter);
             if(ind>collectionManager.groupStack.size() && collectionManager.groupStack.empty() ||
                     ind>collectionManager.groupStack.size()+1 && !collectionManager.groupStack.empty())
                 System.out.println("index bigger than must be");
@@ -74,28 +80,28 @@ class CommandManager {
     }
     public void info(){
         System.out.println("type: Stack\n" +
-                "creation's date: "+ java.time.ZonedDateTime.now()+"\n" +
-                "size: "+ collectionManager.groupStack.size());
+                "creation date: "+ java.time.ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+"\n" +
+                "size: "+ collectionManager.groupStack.size()+
+                "\n");
     }
-    public void help(){
-        System.out.println("""
-                help : вывести справку по доступным командам
-                info : вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)
-                show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении
-                add {element} : добавить новый элемент в коллекцию
-                update id {element} : обновить значение элемента коллекции, id которого равен заданному
-                remove_by_id id : удалить элемент из коллекции по его id
-                clear : очистить коллекцию
-                save : сохранить коллекцию в файл
-                execute_script file_name : считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.
-                exit : завершить программу (без сохранения в файл)
-                insert_at index {element} : добавить новый элемент в заданную позицию
-                remove_at index : удалить элемент, находящийся в заданной позиции коллекции (index)
-                add_if_min {element} : добавить новый элемент в коллекцию, если его значение меньше, чем у наименьшего элемента этой коллекции
-                filter_by_semester_enum semesterEnum : вывести элементы, значение поля semesterEnum которых равно заданному
-                print_descending : вывести элементы коллекции в порядке убывания
-                print_field_descending_form_of_education : вывести значения поля formOfEducation всех элементов в порядке убывания
-                """);
+    public void help() {
+        commandsDescription.help();
+        commandsDescription.idContainsCommands("", Mode.REMOVE);
+        commandsDescription.idContainsCommands("",Mode.UPDATE);
+        commandsDescription.add("");
+        commandsDescription.clear();
+        commandsDescription.info();
+        commandsDescription.addIfMin();
+        commandsDescription.filterBySemesterEnum("");
+        commandsDescription.insertAt("");
+        commandsDescription.printDescending();
+        commandsDescription.printFieldDescendingFormOfEducation();
+        commandsDescription.save();
+    }
+
+    @Override
+    public void clear() {
+        collectionManager.groupStack.clear();
     }
 }
 

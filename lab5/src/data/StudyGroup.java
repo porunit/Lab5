@@ -23,20 +23,20 @@ public class StudyGroup {
     public StudyGroup(long id, String name, Coordinates coordinates, Integer studentsCount,
                       FormOfEducation formOfEducation, Semester semesterEnum, Person groupAdmin){
             if (id <= 0)
-                throw new WrongDataTypeException("Wrong data type");
+                throw new WrongDataTypeException();
             this.id = id;
             if (name == null || name.isEmpty())
-                throw new WrongDataTypeException("Wrong data type");
+                throw new WrongDataTypeException();
             this.name = name;
             if (coordinates == null)
-                throw new WrongDataTypeException("Wrong data type");
+                throw new WrongDataTypeException();
             this.coordinates = coordinates;
             this.creationDateWithoutFormat = java.time.ZonedDateTime.now();
             this.formOfEducation = formOfEducation;
             if (studentsCount!=null && studentsCount < 0) this.studentsCount = 1;
             else this.studentsCount = studentsCount;
             if(semesterEnum == null)
-                throw new WrongDataTypeException("Wrong data type");
+                throw new WrongDataTypeException();
             else this.semesterEnum = semesterEnum;
             this.groupAdmin = groupAdmin;
         }

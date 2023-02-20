@@ -1,18 +1,17 @@
 package executionManager;
 
 
+import commandEnums.CommandsWithArgument;
+import commandEnums.CommandsWithoutArgument;
+import commandEnums.Mode;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.Scanner;
 
 class CommandParser {
     private final CommandManager commandM;
-    private final String[] commandsWithArgument = new String[]{"add","update", "remove_by_id", "filter_by_semester_enum","insert_at","add_if_min","execute_script"};
-    private final String[] commandsWithoutArgument = new String[]{"show", "print_field_descending_form_of_education", "print_descending","save","info","help"};
-
     public CommandParser(CommandManager commandM){
         this.commandM = commandM;
     }
@@ -26,25 +25,26 @@ class CommandParser {
                 else if(array.length!=2 || array[1] == null || array[1].equals(""))
                     System.out.println("Missed command argument");
                 else {
-                    switch (node) {
-                        case "add" -> commandM.add(array[1]);
-                        case "update" -> commandM.idContainsCommands(array[1], "update");
-                        case "remove_by_id" -> commandM.idContainsCommands(array[1], "remove");
-                        case "filter_by_semester_enum" -> commandM.filterBySemesterEnum(array[1]);
-                        case "insert_at" -> commandM.insertAt(array[1]);
-                        case "add_if_min" -> commandM.addIfMin();
-                        case "execute_script" -> executionScript(array[1]);
+                    switch (CommandsWithArgument.valueOf(node)) {
+                        case add -> commandM.add(array[1]);
+                        case update -> commandM.idContainsCommands(array[1], Mode.UPDATE);
+                        case remove -> commandM.idContainsCommands(array[1], Mode.REMOVE);
+                        case filter_by_semester_enum -> commandM.filterBySemesterEnum(array[1]);
+                        case insert_at -> commandM.insertAt(array[1]);
+                        case add_if_min -> commandM.addIfMin();
+                        case execute_script -> executionScript(array[1]);
                     }
                 }
             }
             else if(array.length == 1){
-                switch (node) {
-                    case "print_field_descending_form_of_education" -> commandM.printFieldDescendingFormOfEducation();
-                    case "show" -> commandM.show();
-                    case "print_descending" -> commandM.printDescending();
-                    case "save" -> commandM.save();
-                    case "info" -> commandM.info();
-                    case "help" -> commandM.help();
+                switch (CommandsWithoutArgument.valueOf(node)) {
+                    case print_field_descending_form_of_education -> commandM.printFieldDescendingFormOfEducation();
+                    case show -> commandM.show();
+                    case print_descending -> commandM.printDescending();
+                    case save -> commandM.save();
+                    case info -> commandM.info();
+                    case help -> commandM.help();
+                    case clear -> commandM.clear();
                 }
             }
             else{
@@ -57,10 +57,16 @@ class CommandParser {
 
 
     private boolean isCommandWithArgument(@NotNull String command){
-        return Arrays.asList(commandsWithArgument).contains(command);
+        try{
+            CommandsWithArgument.valueOf(command);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
-    private boolean isCommand(@NotNull String command){
-        return Arrays.asList(commandsWithoutArgument).contains(command) || Arrays.asList(commandsWithArgument).contains(command);
+    private boolean isCommand(@NotNull String command) {
+        if(isCommandWithoutArgument(command)|| isCommandWithArgument(command)) return true;
+        return false;
     }
     public void executionScript(String path) {
         try {
@@ -70,7 +76,16 @@ class CommandParser {
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found exception");
+        } catch (StackOverflowError e){
+            System.out.println("Recursion script error");
         }
     }
-
+    private boolean isCommandWithoutArgument(String command){
+        try {
+            CommandsWithoutArgument.valueOf(command);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+    }
 }

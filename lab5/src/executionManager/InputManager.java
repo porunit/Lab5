@@ -23,7 +23,7 @@ class InputManager {
     }
 
 
-    static <T extends Enum<T>> T inputEnum(Class<T> enumName, String message, boolean isNullable){
+    protected static <T extends Enum<T>> T inputEnum(Class<T> enumName, String message, boolean isNullable){
         while(true){
             var value = InputManager.input(message);
             try{
@@ -35,7 +35,7 @@ class InputManager {
         }
     }
 
-    static <T> T inputString(Class<T> dataType, String message, boolean isNullable){
+    protected static <T> T inputString(Class<T> dataType, String message, boolean isNullable){
         while(true){
             System.out.print(message);
             try {

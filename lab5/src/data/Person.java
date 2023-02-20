@@ -11,10 +11,10 @@ public class Person {
 
     public Person(){}
     public Person(String name, Long weight, Color eyeColor, Location location){
-        this.name = name;
-        this.weight = weight;
-        this.eyeColor = eyeColor;
-        this.location = location;
+        setName(name);
+        setWeight(weight);
+        setEyeColor(eyeColor);
+        setLocation(location);
     }
 
     public void setEyeColor(Color eyeColor) {
@@ -22,18 +22,20 @@ public class Person {
     }
 
     public void setLocation(Location location) {
-        this.location = location;
+       if(location !=null) this.location = location;
+       else throw new WrongDataTypeException();
     }
 
     public void setName(String name) {
-       if(name!=null) this.name = name;
+       if(name != null && !name.equals("")) this.name = name;
        else throw new WrongDataTypeException();
     }
 
     public void setWeight(Long weight) {
-        if(weight>0)
-        this.weight = weight;
-        else this.weight = Long.valueOf(1);
+        final var minWeight = 0;
+        if(weight> minWeight)
+            this.weight = weight;
+        else this.weight = minWeight + 1L;
     }
     public Color getEyeColor() {
         return eyeColor;
