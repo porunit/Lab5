@@ -136,7 +136,7 @@ class CollectionManager implements ICollectionManager {
         var scomp = new StudyGroupComparator();
         groupStack.sort(scomp);
         for (var it:groupStack) {
-            System.out.println(it.toString());
+            System.out.println(it);
         }
     }
 

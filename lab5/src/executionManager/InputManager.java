@@ -5,18 +5,18 @@ import java.util.Objects;
 import java.util.Scanner;
 
 class InputManager {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner reader = new Scanner(System.in);
 
     private static String input(String message){
         System.out.print(message);
-        String string = scanner.nextLine();
+        String string = reader.nextLine();
         if(string == null || string.isBlank() || string.isEmpty())
             return null;
         return string.trim();
     }
 
     private static String input(){
-        String string = scanner.nextLine();
+        String string = reader.nextLine();
         if(string == null || string.isBlank() || string.isEmpty())
             return null;
         return string.trim();
