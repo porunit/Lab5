@@ -18,9 +18,9 @@ public class Coordinates {
     }
 
     public void setX(Float x) {
-        float minX = -156;
+        final float MIN_X = -156;
         if (x == null) throw new WrongDataTypeException();
-        else if (x<minX) this.x = minX+1;
+        else if (x<MIN_X) this.x = MIN_X+1;
         else this.x = x;
     }
 

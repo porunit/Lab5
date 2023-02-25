@@ -1,14 +1,17 @@
 package executionManager;
 
 import Interfaces.ICommandManager;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import commandEnums.Mode;
+import commands.*;
 import data.Semester;
 
-import java.time.format.DateTimeFormatter;
 
 class CommandManager implements ICommandManager {
     protected CollectionManager collectionManager;
-    private CommandDescriptionManager commandsDescription = new CommandDescriptionManager();
+
+    private static final ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
     public CommandManager(CollectionManager collectionManager){
         this.collectionManager = collectionManager;
     }
@@ -26,8 +29,9 @@ class CommandManager implements ICommandManager {
         if (collectionManager.groupStack.empty() && !flag) System.out.println("Collection is empty");
         else if (!collectionManager.uniqueId.contains(id) && !flag) {
             System.out.println("id doesn't exists");
-        }else if(mode == Mode.UPDATE) collectionManager.update(id);
-        else if(mode == Mode.REMOVE)collectionManager.removeById(id);
+        }
+        else if(mode == Mode.UPDATE) collectionManager.update(id);
+        else if(mode == Mode.REMOVE) collectionManager.removeById(id);
     }
 
     public void add(String name) {
@@ -38,22 +42,22 @@ class CommandManager implements ICommandManager {
 
     public void show() {
         if(collectionManager.groupStack.empty()) System.out.println("Stack is empty");
-        else collectionManager.show();
+        else Show.show(collectionManager.groupStack);
     }
     public void printFieldDescendingFormOfEducation(){
         if(collectionManager.groupStack.empty()) System.out.println("Collection is empty");
-        else collectionManager.printFieldDescendingFormOfEducation();
+        else PrintFieldDescendingFormOfEducation.printFieldDescendingFormOfEducation(collectionManager.groupStack);
     }
 
     public void printDescending(){
         if(collectionManager.groupStack.empty()) System.out.println("Collection is empty");
-        else collectionManager.printDescending();
+        else PrintDescending.printDescending(collectionManager.groupStack);
     }
 
     public void filterBySemesterEnum(String semesterString){
         try{
             Semester semester = Semester.valueOf(semesterString);
-            collectionManager.filterBySemesterEnum(semester);
+            FilterBySemesterEnum.filterBySemesterEnum(semester,collectionManager.groupStack);
         }catch (IllegalArgumentException e){
             System.out.println("No such semester");
         }
@@ -70,38 +74,22 @@ class CommandManager implements ICommandManager {
         }
     }
     public void load(){
-        collectionManager.load();
+        collectionManager.groupStack = Load.load(mapper,collectionManager.uniqueId);
     }
     public void addIfMin(){
         collectionManager.addIfMin();
     }
     public void save(){
-        collectionManager.save();
+        Save.save(collectionManager.groupStack);
     }
     public void info(){
-        System.out.println("type: Stack\n" +
-                "creation date: "+ java.time.ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+"\n" +
-                "size: "+ collectionManager.groupStack.size()+
-                "\n");
+        Info.info(collectionManager.groupStack);
     }
     public void help() {
-        commandsDescription.help();
-        commandsDescription.idContainsCommands("", Mode.REMOVE);
-        commandsDescription.idContainsCommands("",Mode.UPDATE);
-        commandsDescription.add("");
-        commandsDescription.clear();
-        commandsDescription.info();
-        commandsDescription.addIfMin();
-        commandsDescription.filterBySemesterEnum("");
-        commandsDescription.insertAt("");
-        commandsDescription.printDescending();
-        commandsDescription.printFieldDescendingFormOfEducation();
-        commandsDescription.save();
+        Help.help();
     }
-
-    @Override
     public void clear() {
-        collectionManager.groupStack.clear();
+        collectionManager.clear();
     }
 }
 

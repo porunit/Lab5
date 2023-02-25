@@ -1,25 +1,23 @@
 package data;
 
 import exceptions.WrongDataTypeException;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 
 public class StudyGroup {
     private long id;
-    @NotNull private String name;
-    @NotNull private Coordinates coordinates;
-    @NotNull private java.time.ZonedDateTime creationDateWithoutFormat = java.time.ZonedDateTime.now();
-    @NotNull private String creationDate = creationDateWithoutFormat.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-    @Nullable private Integer studentsCount;
-    @Nullable private FormOfEducation formOfEducation;
-    @NotNull private Semester semesterEnum;
-    @Nullable private Person groupAdmin;
+    private String name;
+    private Coordinates coordinates;
+    private java.time.ZonedDateTime creationDateWithoutFormat = java.time.ZonedDateTime.now();
+    private String creationDate = creationDateWithoutFormat.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    private Integer studentsCount;
+    private FormOfEducation formOfEducation;
+    private Semester semesterEnum;
+    private Person groupAdmin;
 
     public StudyGroup(){}
+
     public StudyGroup(long id, String name, Coordinates coordinates, Integer studentsCount,
                       FormOfEducation formOfEducation, Semester semesterEnum, Person groupAdmin){
             if (id <= 0)

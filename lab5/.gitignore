@@ -10,9 +10,9 @@ classes/
 *.launch
 
 # idea
-.lib/
-.out/
-.idea/
+lib
+out
+.idea
 *.iml
 *.ipr
 *.iws

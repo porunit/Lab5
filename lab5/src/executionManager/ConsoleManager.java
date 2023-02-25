@@ -1,6 +1,5 @@
 package executionManager;
 
-import commandEnums.CommandsWithoutArgument;
 import data.StudyGroup;
 
 import java.util.NoSuchElementException;
@@ -27,7 +26,7 @@ public class ConsoleManager {
                 break;
             }
             if (command.equals("exit")) break;
-            parser.parse(command);
+            parser.execute(parser.parse(command));
             System.out.println();
         }
     }

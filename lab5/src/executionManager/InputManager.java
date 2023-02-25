@@ -4,7 +4,7 @@ package executionManager;
 import java.util.Objects;
 import java.util.Scanner;
 
-class InputManager {
+public class InputManager {
     private static final Scanner reader = new Scanner(System.in);
 
     private static String input(String message){
@@ -23,7 +23,7 @@ class InputManager {
     }
 
 
-    protected static <T extends Enum<T>> T inputEnum(Class<T> enumName, String message, boolean isNullable){
+    public static <T extends Enum<T>> T inputEnum(Class<T> enumName, String message, boolean isNullable){
         while(true){
             var value = InputManager.input(message);
             try{
@@ -35,7 +35,7 @@ class InputManager {
         }
     }
 
-    protected static <T> T inputString(Class<T> dataType, String message, boolean isNullable){
+    public static <T> T inputString(Class<T> dataType, String message, boolean isNullable){
         while(true){
             System.out.print(message);
             try {

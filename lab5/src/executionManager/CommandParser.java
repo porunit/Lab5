@@ -15,7 +15,7 @@ class CommandParser {
     public CommandParser(CommandManager commandM){
         this.commandManager = commandM;
     }
-    public void parse(String command) {
+    public String[] parse(String command) {
         command = command.trim();
         String[] array = command.split("\\s+");
         var node = array[0];
@@ -26,19 +26,35 @@ class CommandParser {
                 else if(array.length!=2 || array[1] == null || array[1].equals(""))
                     System.out.println("Missed command argument");
                 else {
-                    String argument = array[1];
-                    switch (CommandsWithArgument.valueOf(node)) {
-                        case add -> commandManager.add(argument);
-                        case update -> commandManager.idContainsCommands(argument, Mode.UPDATE);
-                        case remove -> commandManager.idContainsCommands(argument, Mode.REMOVE);
-                        case filter_by_semester_enum -> commandManager.filterBySemesterEnum(argument);
-                        case insert_at -> commandManager.insertAt(argument);
-                        case add_if_min -> commandManager.addIfMin();
-                        case execute_script -> executionScript(argument);
-                    }
+                    return array;
                 }
             }
             else if(array.length == COMMAND_NO_ARG_LENGTH) {
+                return array;
+            }
+            else{
+                System.out.println("This command doesn't contains argument");
+            }
+       }
+       else System.out.println("Command doesn't exists");
+       return null;
+    }
+
+    public void execute(String[] array){
+        if(array!=null) {
+            String node = array[0];
+            if (array.length == 2) {
+                String argument = array[1];
+                switch (CommandsWithArgument.valueOf(node)) {
+                    case add -> commandManager.add(argument);
+                    case update -> commandManager.idContainsCommands(argument, Mode.UPDATE);
+                    case remove -> commandManager.idContainsCommands(argument, Mode.REMOVE);
+                    case filter_by_semester_enum -> commandManager.filterBySemesterEnum(argument);
+                    case insert_at -> commandManager.insertAt(argument);
+                    case add_if_min -> commandManager.addIfMin();
+                    case execute_script -> executionScript(argument);
+                }
+            } else {
                 switch (CommandsWithoutArgument.valueOf(node)) {
                     case print_field_descending_form_of_education -> commandManager.printFieldDescendingFormOfEducation();
                     case show -> commandManager.show();
@@ -49,15 +65,8 @@ class CommandParser {
                     case clear -> commandManager.clear();
                 }
             }
-            else{
-                System.out.println("This command doesn't contains argument");
-            }
-       }
-       else System.out.println("Command doesn't exists");
+        }
     }
-
-
-
     private boolean isCommandWithArgument(@NotNull String command){
         try{
             CommandsWithArgument.valueOf(command);
@@ -73,7 +82,7 @@ class CommandParser {
         try {
             Scanner scanner = new Scanner(new File(path));
             while(scanner.hasNextLine()){
-                parse(String.valueOf(scanner.nextLine()));
+                execute(parse(String.valueOf(scanner.nextLine())));
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found exception");

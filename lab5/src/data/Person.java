@@ -1,7 +1,6 @@
 package data;
 
 import exceptions.WrongDataTypeException;
-import org.jetbrains.annotations.Nullable;
 
 public class Person {
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -32,10 +31,10 @@ public class Person {
     }
 
     public void setWeight(Long weight) {
-        final var minWeight = 0;
-        if(weight> minWeight)
+        final var MIN_WEIGHT = 0;
+        if(weight> MIN_WEIGHT)
             this.weight = weight;
-        else this.weight = minWeight + 1L;
+        else this.weight = MIN_WEIGHT + 1L;
     }
     public Color getEyeColor() {
         return eyeColor;
