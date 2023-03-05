@@ -2,20 +2,20 @@ package commands;
 
 import comparators.EducationComparator;
 import data.FormOfEducation;
-import data.StudyGroup;
+import executionManager.CollectionManager;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
-public class PrintFieldDescendingFormOfEducation {
+public class PrintFieldDescendingFormOfEducationCommand {
 
-    public static void printFieldDescendingFormOfEducation(Stack<StudyGroup> groupStack) {
+    public static void execute() {
+        var groups = CollectionManager.getAll();
         ArrayList<FormOfEducation> array = new ArrayList<>();
-        for (var it:groupStack) {
+        for (var it:groups) {
             array.add(it.getFormOfEducation());
         }
-        var ecomp = new EducationComparator();
-        array.sort(ecomp);
+        var eComp = new EducationComparator();
+        array.sort(eComp);
         for (var it:array) {
             System.out.print(it+" | ");
         }

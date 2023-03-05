@@ -3,7 +3,7 @@ package executionManager;
 
 import commandEnums.CommandsWithArgument;
 import commandEnums.CommandsWithoutArgument;
-import commandEnums.Mode;
+import commands.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -11,9 +11,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 class CommandParser {
-    private final CommandManager commandManager;
-    public CommandParser(CommandManager commandM){
-        this.commandManager = commandM;
+    public CommandParser(){
+
     }
     public String[] parse(String command) {
         command = command.trim();
@@ -26,11 +25,29 @@ class CommandParser {
                 else if(array.length!=2 || array[1] == null || array[1].equals(""))
                     System.out.println("Missed command argument");
                 else {
-                    return array;
+                    String argument = array[1];
+                    switch (CommandsWithArgument.valueOf(node)) {
+                        case update -> UpdateCommand.execute(argument);
+                        case remove -> RemoveByIdCommand.execute(argument);
+                        case filter_by_semester_enum -> FilterBySemesterEnumCommand.execute(argument);
+                        case insert_at -> InsertAtCommand.execute(argument);
+                        case add_if_min -> AddIfMinCommand.execute();
+                        case execute_script -> executionScript(argument);
+                    }
                 }
             }
             else if(array.length == COMMAND_NO_ARG_LENGTH) {
-                return array;
+                switch (CommandsWithoutArgument.valueOf(node)) {
+                    case add -> AddCommand.execute();
+                    case print_field_descending_form_of_education -> PrintFieldDescendingFormOfEducationCommand.execute();
+                    case show -> ShowCommand.show();
+                    case print_descending -> PrintDescendingCommand.execute();
+                    case save -> SaveCommand.execute();
+                    case info -> InfoCommand.execute();
+                    case help -> HelpCommand.execute();
+                    case clear -> ClearCommand.execute();
+                    case exit -> ExitCommand.execute();
+                }
             }
             else{
                 System.out.println("This command doesn't contains argument");
@@ -40,33 +57,6 @@ class CommandParser {
        return null;
     }
 
-    public void execute(String[] array){
-        if(array!=null) {
-            String node = array[0];
-            if (array.length == 2) {
-                String argument = array[1];
-                switch (CommandsWithArgument.valueOf(node)) {
-                    case add -> commandManager.add(argument);
-                    case update -> commandManager.idContainsCommands(argument, Mode.UPDATE);
-                    case remove -> commandManager.idContainsCommands(argument, Mode.REMOVE);
-                    case filter_by_semester_enum -> commandManager.filterBySemesterEnum(argument);
-                    case insert_at -> commandManager.insertAt(argument);
-                    case add_if_min -> commandManager.addIfMin();
-                    case execute_script -> executionScript(argument);
-                }
-            } else {
-                switch (CommandsWithoutArgument.valueOf(node)) {
-                    case print_field_descending_form_of_education -> commandManager.printFieldDescendingFormOfEducation();
-                    case show -> commandManager.show();
-                    case print_descending -> commandManager.printDescending();
-                    case save -> commandManager.save();
-                    case info -> commandManager.info();
-                    case help -> commandManager.help();
-                    case clear -> commandManager.clear();
-                }
-            }
-        }
-    }
     private boolean isCommandWithArgument(@NotNull String command){
         try{
             CommandsWithArgument.valueOf(command);
@@ -82,7 +72,7 @@ class CommandParser {
         try {
             Scanner scanner = new Scanner(new File(path));
             while(scanner.hasNextLine()){
-                execute(parse(String.valueOf(scanner.nextLine())));
+                parse(String.valueOf(scanner.nextLine()));
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found exception");

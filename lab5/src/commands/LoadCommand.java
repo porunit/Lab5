@@ -3,21 +3,15 @@ package commands;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import data.StudyGroup;
+import executionManager.CollectionManager;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Stack;
 
-public class Load {
-
-    private static void joinId(HashSet<Long> uniqueId, Stack<StudyGroup> groupStack){
-        for (var it : groupStack) {
-            uniqueId.add(it.getId());
-        }
-    }
-
+public class LoadCommand {
     private static String setPath(){
         String path = System.getenv("GOPATH");
         if (path == null) {
@@ -30,9 +24,10 @@ public class Load {
         return path;
     }
 
-    public static Stack<StudyGroup> load(ObjectMapper mapper, HashSet<Long> uniqueId) {
+    public static void execute() {
         String path = setPath();
         Stack<StudyGroup> groupStack = new Stack<>();
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         try {
             groupStack = mapper.readValue(new File(setPath()), new TypeReference<Stack<StudyGroup>>() {});
             System.out.println("File was loaded");
@@ -44,7 +39,7 @@ public class Load {
         catch (IOException e) {
             System.out.println("Unable to load '" + path + "' No such file\n");
         }
-        joinId(uniqueId, groupStack);
-        return groupStack;
+        CollectionManager.load(groupStack);
+        CollectionManager.joinId();
     }
 }

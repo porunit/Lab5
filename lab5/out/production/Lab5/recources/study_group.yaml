@@ -50,3 +50,20 @@
       x: 23.0f
       "y": 12
       z: 3
+- id: 1
+  name: bebra
+  coordinates:
+    x: 213.0f
+    "y": 213
+  creationDate: 2023-03-05
+  studentsCount: 32
+  formOfEducation: null
+  semesterEnum: SECOND
+  groupAdmin:
+    name: 23
+    weight: 123
+    eyeColor: BLACK
+    location:
+      x: 3.0f
+      "y": 3
+      z: 2

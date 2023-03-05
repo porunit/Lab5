@@ -1,13 +1,13 @@
 package commands;
 
 import data.StudyGroup;
+import executionManager.CollectionManager;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Stack;
 
-public class Save {
+public class SaveCommand {
 
     private static String setPath(){
         String path = System.getenv("GOPATH");
@@ -21,11 +21,12 @@ public class Save {
         return path;
     }
 
-    public static void save(Stack<StudyGroup> groupStack) {
+    public static void execute() {
         try (FileWriter writer = new FileWriter(setPath());
              BufferedWriter bw = new BufferedWriter(writer)) {
             bw.write("---\n");
-            for(StudyGroup group: groupStack) {
+            var groups = CollectionManager.getAll();
+            for(StudyGroup group: groups) {
                 bw.write(group.toString()+"\n");
             }
             System.out.println("Text written to the file successfully.");

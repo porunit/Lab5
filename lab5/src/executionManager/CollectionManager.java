@@ -1,39 +1,33 @@
 package executionManager;
 
-import commands.*;
+import data.Semester;
 import data.StudyGroup;
 
 import java.util.*;
 
-class CollectionManager {
-    protected Stack<StudyGroup> groupStack;
-    protected HashSet<Long> uniqueId = new HashSet<>();
+public class CollectionManager {
+    private static Stack<StudyGroup> groupStack;
+    private static HashSet<Long> uniqueId;
 
-    public CollectionManager(Stack<StudyGroup> stack){
-        this.groupStack = stack;
+    static {
+        groupStack = new Stack<>();
+        uniqueId = new HashSet<>();
     }
 
-    public void add(String name){
-      groupStack.add(new Add(uniqueId).add(name));
+    public static void add(StudyGroup group){
+        groupStack.add(group);
     }
 
-    public StudyGroup add(){
-        return new Add(uniqueId).add();
+    public static void remove(long id, StudyGroup group) {
+        groupStack.remove(group);
+        uniqueId.remove(id);
     }
-
-    public void add(long id){
-        groupStack.add(new Add(uniqueId).add(id));
+    public static void remove(long id){
+        for(var it : groupStack){
+            if (it.getId() == id) groupStack.remove(it);
+        }
     }
-
-    public void update(long id) {
-        if(Update.isUpdatable(id,uniqueId,groupStack))
-            add(id);
-    }
-    public void removeById(long id){
-        Remove.removeById(id,groupStack,uniqueId);
-    }
-
-    public void clear() {
+    public static void clear() {
         groupStack.clear();
         uniqueId.clear();
     }
@@ -42,10 +36,49 @@ class CollectionManager {
         System.out.println("Weird command description");
     }
 
-    public void insertAt(int ind) {
-        groupStack.add(ind, add());
+    public static void insertAt(int ind, StudyGroup group){
+        groupStack.add(ind,group);
     }
 
+    public static boolean checkId(long id){
+        return uniqueId.contains(id);
+    }
+
+    public static int getAmountElements(){
+        return uniqueId.size();
+    }
+    public static void appendId(long id){
+        uniqueId.add(id);
+    }
+    public static List<StudyGroup> getAll(){
+        List<StudyGroup> groups = new ArrayList<>();
+        for(var it: groupStack) {
+            groups.add(it);
+        }
+        return groups;
+    }
+    public static List getFilteredBySemesterEnum(Semester semester) {
+        List<StudyGroup> groups = new ArrayList<>();
+        for (var it: groupStack) {
+            if (it.getSemester() == semester) {
+                groups.add(it);
+            }
+        }
+        return groups;
+    }
+
+    public static boolean isStackEmpty(){
+        return groupStack.isEmpty();
+    }
+
+    public static void load(Stack<StudyGroup> loadedStack){
+        groupStack =  loadedStack;
+    }
+    public static void joinId(){
+        for (var it : groupStack) {
+            uniqueId.add(it.getId());
+        }
+    }
 }
 
 

@@ -1,16 +1,15 @@
 package commands;
 
-import data.StudyGroup;
+import executionManager.CollectionManager;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Stack;
 
-public class Info {
+public class InfoCommand {
 
-    public static void info(Stack<StudyGroup> groupStack){
+    public static void execute(){
         System.out.println("type: Stack\n" +
                 "creation date: "+ java.time.ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+"\n" +
-                "size: "+ groupStack.size()+
+                "size: "+ CollectionManager.getAmountElements() +
                 "\n");
     }
 }

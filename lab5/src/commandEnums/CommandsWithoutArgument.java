@@ -8,5 +8,6 @@ public enum CommandsWithoutArgument {
     info,
     help,
     clear,
+    add,
     exit
 }
