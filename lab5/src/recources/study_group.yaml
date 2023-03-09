@@ -1,4 +1,21 @@
 ---
+- id: 1
+  name: bebra
+  coordinates:
+    x: 213.0f
+    "y": 213
+  creationDate: 2023-03-05
+  studentsCount: 32
+  formOfEducation: null
+  semesterEnum: SECOND
+  groupAdmin:
+    name: 23
+    weight: 123
+    eyeColor: BLACK
+    location:
+      x: 3.0f
+      "y": 3
+      z: 2
 - id: 2
   name: wd
   coordinates:
@@ -50,20 +67,37 @@
       x: 23.0f
       "y": 12
       z: 3
-- id: 1
-  name: bebra
+- id: 5
+  name: bobik
   coordinates:
-    x: 213.0f
-    "y": 213
-  creationDate: 2023-03-05
-  studentsCount: 32
+    x: 42.0f
+    "y": 234
+  creationDate: 2023-03-08
+  studentsCount: null
   formOfEducation: null
   semesterEnum: SECOND
   groupAdmin:
-    name: 23
-    weight: 123
-    eyeColor: BLACK
+    name: 13
+    weight: 32
+    eyeColor: RED
     location:
-      x: 3.0f
-      "y": 3
+      x: 23.0f
+      "y": 1
       z: 2
+- id: 6
+  name: qwe
+  coordinates:
+    x: 213.0f
+    "y": 3
+  creationDate: 2023-03-08
+  studentsCount: 2
+  formOfEducation: EVENING_CLASSES
+  semesterEnum: SECOND
+  groupAdmin:
+    name: qew
+    weight: 228
+    eyeColor: RED
+    location:
+      x: 123.0f
+      "y": 32
+      z: 123

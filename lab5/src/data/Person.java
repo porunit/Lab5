@@ -7,6 +7,7 @@ public class Person {
     private Long weight; //Поле не может быть null, Значение поля должно быть больше 0
     private Color eyeColor; //Поле может быть null
     private Location location; //Поле не может быть null
+    private static final int MIN_WEIGHT = 0;
 
     public Person(){}
     public Person(String name, Long weight, Color eyeColor, Location location){
@@ -31,10 +32,8 @@ public class Person {
     }
 
     public void setWeight(Long weight) {
-        final var MIN_WEIGHT = 0;
-        if(weight> MIN_WEIGHT)
-            this.weight = weight;
-        else this.weight = MIN_WEIGHT + 1L;
+        if(weight <= MIN_WEIGHT) throw new WrongDataTypeException();
+        else this.weight = weight;
     }
     public Color getEyeColor() {
         return eyeColor;
@@ -50,5 +49,8 @@ public class Person {
 
     public String getName() {
         return name;
+    }
+    public static int getMinWeight(){
+        return MIN_WEIGHT;
     }
 }

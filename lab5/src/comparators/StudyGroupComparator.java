@@ -6,8 +6,7 @@ import java.util.Comparator;
 
 public class StudyGroupComparator implements Comparator<StudyGroup> {
 
-    @Override
-    public int compare(StudyGroup o1, StudyGroup o2) {
-        return o1.getName().compareTo(o2.getName());
+    public int compare(StudyGroup sg1, StudyGroup sg2) {
+        return Long.compare(sg1.getId(), sg2.getId());
     }
 }

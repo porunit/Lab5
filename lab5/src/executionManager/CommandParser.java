@@ -1,24 +1,26 @@
 package executionManager;
 
 
-import commandEnums.CommandsWithArgument;
-import commandEnums.CommandsWithoutArgument;
-import commands.*;
+import Interfaces.CommandWithArgument;
+import Interfaces.CommandWithoutArgument;
+
+import commands.CommandMapsBuilder;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.Scanner;
 
-class CommandParser {
-    public CommandParser(){
-
-    }
-    public String[] parse(String command) {
-        command = command.trim();
-        String[] array = command.split("\\s+");
+public class CommandParser {
+    final int COMMAND_NO_ARG_LENGTH = 1;
+    private final HashMap<String, CommandWithoutArgument> commandsWithoutArgumentHashMap = CommandMapsBuilder.buildCommandWithoutArgumentMap();
+    private final HashMap<String, CommandWithArgument> commandsWithArgumentHashMap = CommandMapsBuilder.buildCommandWithArgumentMap();
+    public CommandParser(){}
+    public void parse(String commandName) {
+        commandName = commandName.trim();
+        String[] array = commandName.split("\\s+");
         var node = array[0];
-        int COMMAND_NO_ARG_LENGTH = 1;
        if(isCommand(node)){
             if (isCommandWithArgument(node)) {
                 if(array.length>2) System.out.println("Wrong argument format");
@@ -26,44 +28,23 @@ class CommandParser {
                     System.out.println("Missed command argument");
                 else {
                     String argument = array[1];
-                    switch (CommandsWithArgument.valueOf(node)) {
-                        case update -> UpdateCommand.execute(argument);
-                        case remove -> RemoveByIdCommand.execute(argument);
-                        case filter_by_semester_enum -> FilterBySemesterEnumCommand.execute(argument);
-                        case insert_at -> InsertAtCommand.execute(argument);
-                        case add_if_min -> AddIfMinCommand.execute();
-                        case execute_script -> executionScript(argument);
-                    }
+                    CommandWithArgument command = commandsWithArgumentHashMap.get(node);
+                    command.execute(argument);
                 }
             }
             else if(array.length == COMMAND_NO_ARG_LENGTH) {
-                switch (CommandsWithoutArgument.valueOf(node)) {
-                    case add -> AddCommand.execute();
-                    case print_field_descending_form_of_education -> PrintFieldDescendingFormOfEducationCommand.execute();
-                    case show -> ShowCommand.show();
-                    case print_descending -> PrintDescendingCommand.execute();
-                    case save -> SaveCommand.execute();
-                    case info -> InfoCommand.execute();
-                    case help -> HelpCommand.execute();
-                    case clear -> ClearCommand.execute();
-                    case exit -> ExitCommand.execute();
+                    CommandWithoutArgument command = commandsWithoutArgumentHashMap.get(commandName);
+                    command.execute();
                 }
-            }
             else{
                 System.out.println("This command doesn't contains argument");
             }
        }
        else System.out.println("Command doesn't exists");
-       return null;
     }
 
     private boolean isCommandWithArgument(@NotNull String command){
-        try{
-            CommandsWithArgument.valueOf(command);
-            return true;
-        }catch (Exception e){
-            return false;
-        }
+        return commandsWithArgumentHashMap.containsKey(command);
     }
     private boolean isCommand(@NotNull String command) {
         return isCommandWithoutArgument(command) || isCommandWithArgument(command);
@@ -81,11 +62,6 @@ class CommandParser {
         }
     }
     private boolean isCommandWithoutArgument(String command){
-        try {
-            CommandsWithoutArgument.valueOf(command);
-            return true;
-        } catch (Exception e){
-            return false;
-        }
+        return commandsWithoutArgumentHashMap.containsKey(command);
     }
 }

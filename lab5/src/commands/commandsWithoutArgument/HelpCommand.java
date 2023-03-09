@@ -1,8 +1,11 @@
-package commands;
+package commands.commandsWithoutArgument;
 
-public class HelpCommand {
+import Interfaces.Command;
+import Interfaces.CommandWithoutArgument;
 
-    public static void execute() {
+public class HelpCommand implements CommandWithoutArgument, Command {
+
+    public void execute() {
         System.out.println("""
                 show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении
                 add {element} : добавить новый элемент в коллекцию
@@ -19,5 +22,10 @@ public class HelpCommand {
                 exit : завершить программу (без сохранения в файл)
                 clear : очистить коллекцию
                 execute_script file_name : считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.""");
+    }
+
+    @Override
+    public String getDescription() {
+        return "help : вывести справку по доступным командам";
     }
 }
