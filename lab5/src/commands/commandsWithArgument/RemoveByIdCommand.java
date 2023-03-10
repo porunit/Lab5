@@ -1,7 +1,7 @@
 package commands.commandsWithArgument;
 
-import Interfaces.Command;
-import Interfaces.CommandWithArgument;
+import interfaces.Command;
+import interfaces.CommandWithArgument;
 import executionManager.CollectionManager;
 
 public class RemoveByIdCommand implements CommandWithArgument, Command {

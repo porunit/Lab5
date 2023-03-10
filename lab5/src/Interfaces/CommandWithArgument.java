@@ -1,5 +1,5 @@
-package Interfaces;
+package interfaces;
 
-public interface CommandWithArgument {
+public interface CommandWithArgument extends Command{
     void execute(String argument);
 }

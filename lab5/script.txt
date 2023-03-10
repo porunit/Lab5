@@ -1,6 +1,2 @@
 info
 help
-show
-remove 1
-show
-save

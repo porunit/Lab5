@@ -1,12 +1,11 @@
 package commands.commandsWithoutArgument;
 
-import Interfaces.Command;
-import Interfaces.CommandWithoutArgument;
+import interfaces.CommandWithoutArgument;
 import executionManager.CollectionManager;
 
 import java.time.format.DateTimeFormatter;
 
-public class InfoCommand implements CommandWithoutArgument, Command {
+public class InfoCommand implements CommandWithoutArgument {
 
     public void execute() {
         System.out.println("type: " + CollectionManager.getCollectionType() + "\n" +

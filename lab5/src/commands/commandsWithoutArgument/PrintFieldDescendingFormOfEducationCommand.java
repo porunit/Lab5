@@ -1,7 +1,7 @@
 package commands.commandsWithoutArgument;
 
-import Interfaces.Command;
-import Interfaces.CommandWithoutArgument;
+import interfaces.Command;
+import interfaces.CommandWithoutArgument;
 import comparators.FormOfEducationComparator;
 import data.FormOfEducation;
 import executionManager.CollectionManager;
@@ -20,6 +20,7 @@ public class PrintFieldDescendingFormOfEducationCommand implements CommandWithou
         for (var it : formOfEducations) {
             System.out.print(it + " | ");
         }
+        System.out.println();
     }
 
     @Override

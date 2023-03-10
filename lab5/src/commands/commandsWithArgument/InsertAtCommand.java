@@ -1,7 +1,7 @@
 package commands.commandsWithArgument;
 
-import Interfaces.Command;
-import Interfaces.CommandWithArgument;
+import interfaces.Command;
+import interfaces.CommandWithArgument;
 import commands.commandsWithoutArgument.AddCommand;
 import executionManager.CollectionManager;
 
@@ -13,7 +13,7 @@ public class InsertAtCommand implements CommandWithArgument, Command {
                     index>CollectionManager.getAmountElements()+1 && !CollectionManager.isStackEmpty())
                 System.out.println("index bigger than must be");
             else CollectionManager.insertAt(index, AddCommand.add());
-        } catch (NumberFormatException | NullPointerException | StackOverflowError e) {
+        } catch (NumberFormatException | NullPointerException e) {
             System.out.println("Wrong index format");
         }
     }

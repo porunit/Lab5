@@ -1,7 +1,7 @@
 package commands.commandsWithoutArgument;
 
-import Interfaces.Command;
-import Interfaces.CommandWithoutArgument;
+import interfaces.Command;
+import interfaces.CommandWithoutArgument;
 import executionManager.CollectionManager;
 
 public class ShowCommand implements CommandWithoutArgument, Command {

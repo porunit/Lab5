@@ -1,8 +1,8 @@
 package executionManager;
 
 
-import Interfaces.CommandWithArgument;
-import Interfaces.CommandWithoutArgument;
+import interfaces.CommandWithArgument;
+import interfaces.CommandWithoutArgument;
 
 import commands.CommandMapsBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -16,7 +16,9 @@ public class CommandParser {
     final int COMMAND_NO_ARG_LENGTH = 1;
     private final HashMap<String, CommandWithoutArgument> commandsWithoutArgumentHashMap = CommandMapsBuilder.buildCommandWithoutArgumentMap();
     private final HashMap<String, CommandWithArgument> commandsWithArgumentHashMap = CommandMapsBuilder.buildCommandWithArgumentMap();
-    public CommandParser(){}
+    public CommandParser(){
+
+    }
     public void parse(String commandName) {
         commandName = commandName.trim();
         String[] array = commandName.split("\\s+");

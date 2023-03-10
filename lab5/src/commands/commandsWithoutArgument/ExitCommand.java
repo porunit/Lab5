@@ -1,7 +1,7 @@
 package commands.commandsWithoutArgument;
 
-import Interfaces.Command;
-import Interfaces.CommandWithoutArgument;
+import interfaces.Command;
+import interfaces.CommandWithoutArgument;
 
 public class ExitCommand implements CommandWithoutArgument, Command {
     @Override

@@ -1,7 +1,7 @@
 package commands.commandsWithArgument;
 
-import Interfaces.Command;
-import Interfaces.CommandWithArgument;
+import interfaces.Command;
+import interfaces.CommandWithArgument;
 import data.Semester;
 import executionManager.CollectionManager;
 
@@ -13,7 +13,7 @@ public class FilterBySemesterEnumCommand implements CommandWithArgument, Command
         Semester semester = null;
         try {
             semester = Semester.valueOf(argument);
-        } catch (NoSuchElementException e) {
+        } catch (NoSuchElementException | IllegalArgumentException e) {
             System.out.println("No such semester");
         }
         var groups = CollectionManager.getFilteredBySemesterEnum(semester);

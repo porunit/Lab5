@@ -1,7 +1,6 @@
 package commands.commandsWithoutArgument;
 
-import Interfaces.Command;
-import Interfaces.CommandWithoutArgument;
+import interfaces.CommandWithoutArgument;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,7 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Stack;
 
-public class LoadCommand implements CommandWithoutArgument, Command {
+public class LoadCommand implements CommandWithoutArgument {
 
 
     public void execute() {
@@ -21,7 +20,8 @@ public class LoadCommand implements CommandWithoutArgument, Command {
         Stack<StudyGroup> groupStack = new Stack<>();
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         try {
-            groupStack = mapper.readValue(new File(path), new TypeReference<Stack<StudyGroup>>() {});
+            groupStack = mapper.readValue(new File(path), new TypeReference<Stack<StudyGroup>>() {
+            });
             System.out.println("File was loaded");
         } catch (DatabindException e) {
             System.out.println("'" + path + "' contains broken data");
@@ -35,7 +35,7 @@ public class LoadCommand implements CommandWithoutArgument, Command {
 
     @Override
     public String getDescription() {
-        return null;
+        return "load path: загрузить коллекцию из файла";
     }
 
 }

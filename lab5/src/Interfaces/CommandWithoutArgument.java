@@ -1,5 +1,5 @@
-package Interfaces;
+package interfaces;
 
-public interface CommandWithoutArgument {
+public interface CommandWithoutArgument extends Command {
     void execute();
 }

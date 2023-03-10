@@ -1,7 +1,7 @@
 package commands.commandsWithArgument;
 
-import Interfaces.Command;
-import Interfaces.CommandWithArgument;
+import interfaces.Command;
+import interfaces.CommandWithArgument;
 import commands.commandsWithoutArgument.AddCommand;
 import executionManager.CollectionManager;
 
