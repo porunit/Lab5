@@ -44,9 +44,6 @@ public class CollectionManager {
         uniqueId.clear();
     }
 
-    public void addIfMin() {
-        System.out.println("Weird command description");
-    }
 
     public static void insertAt(int ind, StudyGroup group) {
         groupStack.add(ind, group);
@@ -65,15 +62,13 @@ public class CollectionManager {
         uniqueId.add(id);
     }
 
-    public static List<StudyGroup> getAll() {
-        List<StudyGroup> groups = new ArrayList<>();
-        for (var it : groupStack) {
-            groups.add(it);
-        }
-        return groups;
+
+    public static ArrayList<StudyGroup> getAll() {
+        ArrayList<StudyGroup> studyGroups = new ArrayList<>(groupStack);
+        return studyGroups;
     }
 
-    public static List getFilteredBySemesterEnum(Semester semester) {
+    public static List<StudyGroup> getFilteredBySemesterEnum(Semester semester) {
         List<StudyGroup> groups = new ArrayList<>();
         for (var it : groupStack) {
             if (it.getSemester() == semester) {
@@ -107,6 +102,10 @@ public class CollectionManager {
 
     public static String getFilePath() {
         return path;
+    }
+
+    public static long getMinId(){
+        return Collections.min(uniqueId);
     }
 }
 

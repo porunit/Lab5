@@ -5,7 +5,7 @@ import exceptions.WrongDataTypeException;
 public class Coordinates {
     private Float x; //Значение поля должно быть больше -156, Поле не может быть null
     private Long y; //Поле не может быть null
-    final static int MIN_X = -156;
+    private final static int MIN_X = -156;
 
     public Coordinates(){}
     public Coordinates(Float x, Long y){

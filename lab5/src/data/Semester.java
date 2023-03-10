@@ -1,7 +1,14 @@
 package data;
 
 public enum Semester {
-    SECOND,
-    THIRD,
-    SIXTH
+    SECOND("Второй"),
+    THIRD("Третий"),
+    SIXTH("Шестой");
+    private String stringSemester;
+    Semester(String color) {
+        stringSemester = color;
+    }
+    public String getStringSemester(){
+        return stringSemester;
+    }
 }
