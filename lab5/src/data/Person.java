@@ -9,8 +9,10 @@ public class Person {
     private Location location; //Поле не может быть null
     private static final int MIN_WEIGHT = 0;
 
-    public Person(){}
-    public Person(String name, Long weight, Color eyeColor, Location location){
+    public Person() {
+    }
+
+    public Person(String name, Long weight, Color eyeColor, Location location) {
         setName(name);
         setWeight(weight);
         setEyeColor(eyeColor);
@@ -22,19 +24,20 @@ public class Person {
     }
 
     public void setLocation(Location location) {
-       if(location !=null) this.location = location;
-       else throw new WrongDataTypeException();
+        if (location != null) this.location = location;
+        else throw new WrongDataTypeException();
     }
 
     public void setName(String name) {
-       if(name != null && !name.equals("")) this.name = name;
-       else throw new WrongDataTypeException();
+        if (name != null && !name.equals("")) this.name = name;
+        else throw new WrongDataTypeException();
     }
 
     public void setWeight(Long weight) {
-        if(weight <= MIN_WEIGHT) throw new WrongDataTypeException();
+        if (weight <= MIN_WEIGHT) throw new WrongDataTypeException();
         else this.weight = weight;
     }
+
     public Color getEyeColor() {
         return eyeColor;
     }
@@ -50,7 +53,8 @@ public class Person {
     public String getName() {
         return name;
     }
-    public static int getMinWeight(){
+
+    public static int getMinWeight() {
         return MIN_WEIGHT;
     }
 }

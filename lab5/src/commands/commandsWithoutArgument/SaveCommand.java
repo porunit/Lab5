@@ -1,15 +1,14 @@
 package commands.commandsWithoutArgument;
 
-import interfaces.Command;
-import interfaces.CommandWithoutArgument;
 import data.StudyGroup;
 import executionManager.CollectionManager;
+import interfaces.CommandWithoutArgument;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class SaveCommand implements CommandWithoutArgument, Command {
+public class SaveCommand implements CommandWithoutArgument {
 
     public void execute() {
         try (FileWriter writer = new FileWriter(CollectionManager.getFilePath());

@@ -1,9 +1,8 @@
 package commands.commandsWithoutArgument;
 
-import interfaces.Command;
 import interfaces.CommandWithoutArgument;
 
-public class ExitCommand implements CommandWithoutArgument, Command {
+public class ExitCommand implements CommandWithoutArgument {
     @Override
     public void execute() {
         System.exit(0);

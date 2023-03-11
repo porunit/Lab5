@@ -1,10 +1,9 @@
 package commands.commandsWithoutArgument;
 
-import interfaces.Command;
-import interfaces.CommandWithoutArgument;
 import executionManager.CollectionManager;
+import interfaces.CommandWithoutArgument;
 
-public class ShowCommand implements CommandWithoutArgument, Command {
+public class ShowCommand implements CommandWithoutArgument {
 
     public void execute() {
         for (var group : CollectionManager.getAll()) {

@@ -1,13 +1,12 @@
 package commands.commandsWithArgument;
 
-import interfaces.Command;
-import interfaces.CommandWithArgument;
 import data.Semester;
 import executionManager.CollectionManager;
+import interfaces.CommandWithArgument;
 
 import java.util.NoSuchElementException;
 
-public class FilterBySemesterEnumCommand implements CommandWithArgument, Command {
+public class FilterBySemesterEnumCommand implements CommandWithArgument {
 
     public void execute(String argument) {
         Semester semester = null;

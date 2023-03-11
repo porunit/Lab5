@@ -1,12 +1,11 @@
 package commands.commandsWithoutArgument;
 
-import interfaces.Command;
-import interfaces.CommandWithoutArgument;
 import data.*;
 import executionManager.CollectionManager;
 import executionManager.InputManager;
+import interfaces.CommandWithoutArgument;
 
-public class AddCommand implements CommandWithoutArgument, Command {
+public class AddCommand implements CommandWithoutArgument {
 
     public static StudyGroup add() {
         String name = InputManager.inputString(String.class, "Name(String):", false);

@@ -1,7 +1,7 @@
 package commands.commandsWithoutArgument;
 
-import interfaces.CommandWithoutArgument;
 import executionManager.CollectionManager;
+import interfaces.CommandWithoutArgument;
 
 public class PrintDescendingCommand implements CommandWithoutArgument {
 

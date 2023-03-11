@@ -1,10 +1,9 @@
 package commands.commandsWithoutArgument;
 
-import interfaces.Command;
-import interfaces.CommandWithoutArgument;
 import executionManager.CollectionManager;
+import interfaces.CommandWithoutArgument;
 
-public class ClearCommand implements CommandWithoutArgument, Command {
+public class ClearCommand implements CommandWithoutArgument {
     @Override
     public void execute() {
         CollectionManager.clear();

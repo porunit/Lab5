@@ -7,8 +7,10 @@ public class Location {
     private Integer y; //Поле не может быть null
     private int z;
 
-    public Location(){}
-    public Location(float x, Integer y, int z){
+    public Location() {
+    }
+
+    public Location(float x, Integer y, int z) {
         this.x = x;
         setY(y);
         this.z = z;
@@ -31,7 +33,7 @@ public class Location {
     }
 
     public void setY(Integer y) {
-        if (y!=null) this.y = y;
+        if (y != null) this.y = y;
         else throw new WrongDataTypeException();
     }
 

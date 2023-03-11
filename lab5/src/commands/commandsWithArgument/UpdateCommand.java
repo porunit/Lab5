@@ -1,11 +1,10 @@
 package commands.commandsWithArgument;
 
-import interfaces.Command;
-import interfaces.CommandWithArgument;
 import commands.commandsWithoutArgument.AddCommand;
 import executionManager.CollectionManager;
+import interfaces.CommandWithArgument;
 
-public class UpdateCommand implements CommandWithArgument, Command {
+public class UpdateCommand implements CommandWithArgument {
 
     @Override
     public void execute(String argument) {

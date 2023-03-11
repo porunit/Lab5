@@ -4,11 +4,13 @@ public enum Semester {
     SECOND("Второй"),
     THIRD("Третий"),
     SIXTH("Шестой");
-    private String stringSemester;
+    private final String stringSemester;
+
     Semester(String color) {
         stringSemester = color;
     }
-    public String getStringSemester(){
+
+    public String getStringSemester() {
         return stringSemester;
     }
 }

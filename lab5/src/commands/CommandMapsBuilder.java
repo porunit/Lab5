@@ -1,9 +1,10 @@
 package commands;
 
-import interfaces.CommandWithArgument;
-import interfaces.CommandWithoutArgument;
 import commands.commandsWithArgument.*;
 import commands.commandsWithoutArgument.*;
+import interfaces.CommandWithArgument;
+import interfaces.CommandWithoutArgument;
+
 import java.util.HashMap;
 
 public class CommandMapsBuilder {

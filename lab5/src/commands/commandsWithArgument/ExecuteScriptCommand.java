@@ -1,11 +1,9 @@
 package commands.commandsWithArgument;
 
-import interfaces.Command;
+import executionManager.CommandParser;
 import interfaces.CommandWithArgument;
 
-import executionManager.CommandParser;
-
-public class ExecuteScriptCommand implements CommandWithArgument, Command {
+public class ExecuteScriptCommand implements CommandWithArgument {
 
     @Override
     public void execute(String argument) {

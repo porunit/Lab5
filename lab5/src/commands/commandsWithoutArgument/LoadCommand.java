@@ -1,12 +1,12 @@
 package commands.commandsWithoutArgument;
 
-import interfaces.CommandWithoutArgument;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import data.StudyGroup;
 import executionManager.CollectionManager;
+import interfaces.CommandWithoutArgument;
 
 import java.io.File;
 import java.io.IOException;

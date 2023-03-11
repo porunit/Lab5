@@ -1,14 +1,13 @@
 package commands.commandsWithoutArgument;
 
-import interfaces.Command;
-import interfaces.CommandWithoutArgument;
 import comparators.FormOfEducationComparator;
 import data.FormOfEducation;
 import executionManager.CollectionManager;
+import interfaces.CommandWithoutArgument;
 
 import java.util.ArrayList;
 
-public class PrintFieldDescendingFormOfEducationCommand implements CommandWithoutArgument, Command {
+public class PrintFieldDescendingFormOfEducationCommand implements CommandWithoutArgument {
 
     public void execute() {
         var groups = CollectionManager.getAll();

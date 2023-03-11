@@ -5,11 +5,13 @@ public enum Color {
     BLACK("Черный"),
     YELLOW("Желтый");
 
-    private String stringColor;
+    private final String stringColor;
+
     Color(String color) {
         stringColor = color;
     }
-    public String getStringColor(){
+
+    public String getStringColor() {
         return stringColor;
     }
 }

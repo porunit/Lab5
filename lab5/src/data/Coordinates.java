@@ -7,8 +7,10 @@ public class Coordinates {
     private Long y; //Поле не может быть null
     private final static int MIN_X = -156;
 
-    public Coordinates(){}
-    public Coordinates(Float x, Long y){
+    public Coordinates() {
+    }
+
+    public Coordinates(Float x, Long y) {
         setX(x);
         this.y = y;
     }
@@ -19,7 +21,7 @@ public class Coordinates {
     }
 
     public void setX(Float x) {
-        if (x == null || x< MIN_X) throw new WrongDataTypeException();
+        if (x == null || x < MIN_X) throw new WrongDataTypeException();
         else this.x = x;
     }
 
@@ -28,11 +30,11 @@ public class Coordinates {
     }
 
     public void setY(Long y) {
-        if (y!=null) this.y = y;
+        if (y != null) this.y = y;
         else throw new WrongDataTypeException();
     }
 
-    public static int getMinX(){
+    public static int getMinX() {
         return MIN_X;
     }
 }

@@ -5,11 +5,13 @@ public enum FormOfEducation {
     FULL_TIME_EDUCATION("Очное обучение"),
     EVENING_CLASSES("Вечерние классы");
 
-    private String stringFormOfEducation;
+    private final String stringFormOfEducation;
+
     FormOfEducation(String color) {
         stringFormOfEducation = color;
     }
-    public String getStringFormOfEducation(){
+
+    public String getStringFormOfEducation() {
         return stringFormOfEducation;
     }
 }
