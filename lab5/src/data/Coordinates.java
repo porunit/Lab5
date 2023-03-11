@@ -3,9 +3,9 @@ package data;
 import exceptions.WrongDataTypeException;
 
 public class Coordinates {
+    private final static int MIN_X = -156;
     private Float x; //Значение поля должно быть больше -156, Поле не может быть null
     private Long y; //Поле не может быть null
-    private final static int MIN_X = -156;
 
     public Coordinates() {
     }
@@ -15,6 +15,9 @@ public class Coordinates {
         this.y = y;
     }
 
+    public static int getMinX() {
+        return MIN_X;
+    }
 
     public Float getX() {
         return x;
@@ -32,9 +35,5 @@ public class Coordinates {
     public void setY(Long y) {
         if (y != null) this.y = y;
         else throw new WrongDataTypeException();
-    }
-
-    public static int getMinX() {
-        return MIN_X;
     }
 }

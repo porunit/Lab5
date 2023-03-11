@@ -1,6 +1,6 @@
-package commands.commandsWithArgument;
+package commands.commandswithargument;
 
-import executionManager.CollectionManager;
+import executionmanager.CollectionManager;
 import interfaces.CommandWithArgument;
 
 public class RemoveByIdCommand implements CommandWithArgument {
@@ -12,7 +12,7 @@ public class RemoveByIdCommand implements CommandWithArgument {
         } catch (NumberFormatException e) {
             System.out.println("id must be number");
         } finally {
-            if (CollectionManager.checkId(id)) System.out.println("Collection is empty");
+            if (CollectionManager.isStackEmpty()) System.out.println("Collection is empty");
             else if (!CollectionManager.checkId(id)) System.out.println("id doesn't exists");
             else CollectionManager.remove(id);
         }

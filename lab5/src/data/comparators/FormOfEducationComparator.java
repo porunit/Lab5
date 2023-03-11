@@ -1,4 +1,4 @@
-package comparators;
+package data.comparators;
 
 import data.FormOfEducation;
 

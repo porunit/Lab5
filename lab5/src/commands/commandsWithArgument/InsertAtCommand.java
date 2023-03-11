@@ -1,7 +1,7 @@
-package commands.commandsWithArgument;
+package commands.commandswithargument;
 
-import commands.commandsWithoutArgument.AddCommand;
-import executionManager.CollectionManager;
+import commands.commandswithoutargument.AddCommand;
+import executionmanager.CollectionManager;
 import interfaces.CommandWithArgument;
 
 public class InsertAtCommand implements CommandWithArgument {

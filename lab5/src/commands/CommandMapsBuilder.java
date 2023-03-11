@@ -1,7 +1,7 @@
 package commands;
 
-import commands.commandsWithArgument.*;
-import commands.commandsWithoutArgument.*;
+import commands.commandswithargument.*;
+import commands.commandswithoutargument.*;
 import interfaces.CommandWithArgument;
 import interfaces.CommandWithoutArgument;
 

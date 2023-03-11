@@ -1,4 +1,4 @@
-package commands.commandsWithoutArgument;
+package commands.commandswithoutargument;
 
 import interfaces.CommandWithoutArgument;
 

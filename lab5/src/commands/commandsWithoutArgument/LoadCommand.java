@@ -1,11 +1,12 @@
-package commands.commandsWithoutArgument;
+package commands.commandswithoutargument;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import data.StudyGroup;
-import executionManager.CollectionManager;
+import exceptions.WrongDataTypeException;
+import executionmanager.CollectionManager;
 import interfaces.CommandWithoutArgument;
 
 import java.io.File;
@@ -29,7 +30,11 @@ public class LoadCommand implements CommandWithoutArgument {
             System.out.println("Unable to load '" + path + "' No such file\n");
         }
         CollectionManager.load(groupStack);
-        CollectionManager.joinId();
+        try {
+            CollectionManager.joinId();
+        } catch (WrongDataTypeException e) {
+            System.out.println("ID's must be different");
+        }
         CollectionManager.sort();
     }
 

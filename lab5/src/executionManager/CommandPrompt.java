@@ -1,12 +1,12 @@
-package executionManager;
+package executionmanager;
 
-import commands.commandsWithoutArgument.LoadCommand;
+import commands.commandswithoutargument.LoadCommand;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class ConsoleManager {
-    private final CommandParser parser = new CommandParser();
+public class CommandPrompt {
+    private final CommandProcessor parser = new CommandProcessor();
     private final Scanner scanner = new Scanner(System.in);
 
     public void start() {

@@ -1,6 +1,6 @@
-package commands.commandsWithoutArgument;
+package commands.commandswithoutargument;
 
-import executionManager.CollectionManager;
+import executionmanager.CollectionManager;
 import interfaces.CommandWithoutArgument;
 
 import java.time.format.DateTimeFormatter;

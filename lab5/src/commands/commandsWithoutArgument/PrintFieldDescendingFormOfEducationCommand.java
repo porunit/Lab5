@@ -1,8 +1,8 @@
-package commands.commandsWithoutArgument;
+package commands.commandswithoutargument;
 
-import comparators.FormOfEducationComparator;
+import data.comparators.FormOfEducationComparator;
 import data.FormOfEducation;
-import executionManager.CollectionManager;
+import executionmanager.CollectionManager;
 import interfaces.CommandWithoutArgument;
 
 import java.util.ArrayList;

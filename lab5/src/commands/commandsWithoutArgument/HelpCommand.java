@@ -1,4 +1,4 @@
-package commands.commandsWithoutArgument;
+package commands.commandswithoutargument;
 
 import commands.CommandMapsBuilder;
 import interfaces.CommandWithArgument;

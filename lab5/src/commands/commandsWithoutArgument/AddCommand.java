@@ -1,8 +1,8 @@
-package commands.commandsWithoutArgument;
+package commands.commandswithoutargument;
 
 import data.*;
-import executionManager.CollectionManager;
-import executionManager.InputManager;
+import executionmanager.CollectionManager;
+import executionmanager.InputManager;
 import interfaces.CommandWithoutArgument;
 
 public class AddCommand implements CommandWithoutArgument {
@@ -27,11 +27,6 @@ public class AddCommand implements CommandWithoutArgument {
         return new StudyGroup(createID(), name, coordinates, studentCount, formOfEducation, semester, groupAdmin);
     }
 
-    @Override
-    public void execute() {
-        CollectionManager.add(add());
-    }
-
     private static long createID() {
         long id = CollectionManager.getAmountElements() + 1;
         while (CollectionManager.checkId(id)) {
@@ -39,6 +34,11 @@ public class AddCommand implements CommandWithoutArgument {
         }
         CollectionManager.appendId(id);
         return id;
+    }
+
+    @Override
+    public void execute() {
+        CollectionManager.add(add());
     }
 
     @Override

@@ -1,7 +1,7 @@
-package commands.commandsWithoutArgument;
+package commands.commandswithoutargument;
 
 import data.StudyGroup;
-import executionManager.CollectionManager;
+import executionmanager.CollectionManager;
 import interfaces.CommandWithoutArgument;
 
 import java.io.BufferedWriter;

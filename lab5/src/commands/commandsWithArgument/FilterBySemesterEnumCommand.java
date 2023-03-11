@@ -1,7 +1,7 @@
-package commands.commandsWithArgument;
+package commands.commandswithargument;
 
 import data.Semester;
-import executionManager.CollectionManager;
+import executionmanager.CollectionManager;
 import interfaces.CommandWithArgument;
 
 import java.util.NoSuchElementException;

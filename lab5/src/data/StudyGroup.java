@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 
 public class StudyGroup {
-    private long id;
+    private long id = 1;
     private String name;
     private Coordinates coordinates;
     private java.time.ZonedDateTime creationDateWithoutFormat = java.time.ZonedDateTime.now();
@@ -44,6 +44,11 @@ public class StudyGroup {
         return id;
     }
 
+    public void setId(long id) {
+        if (id <= 0) throw new WrongDataTypeException();
+        else this.id = id;
+    }
+
     public String toString() {
 
         if (groupAdmin != null) return "- id: " + id + "\n" +
@@ -73,11 +78,6 @@ public class StudyGroup {
                 "  studentsCount: " + studentsCount + "\n" +
                 "  formOfEducation: " + formOfEducation + "\n" +
                 "  semesterEnum: " + semesterEnum + "\n";
-    }
-
-    public void setId(long id) {
-        if (id <= 0) throw new WrongDataTypeException();
-        else this.id = id;
     }
 
     public String getName() {

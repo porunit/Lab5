@@ -1,4 +1,4 @@
-package executionManager;
+package executionmanager;
 
 
 import commands.CommandMapsBuilder;
@@ -11,12 +11,12 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class CommandParser {
+public class CommandProcessor {
     final int COMMAND_NO_ARG_LENGTH = 1;
     private final HashMap<String, CommandWithoutArgument> commandsWithoutArgumentHashMap = CommandMapsBuilder.buildCommandWithoutArgumentMap();
     private final HashMap<String, CommandWithArgument> commandsWithArgumentHashMap = CommandMapsBuilder.buildCommandWithArgumentMap();
 
-    public CommandParser() {
+    public CommandProcessor() {
 
     }
 
@@ -24,23 +24,20 @@ public class CommandParser {
         commandName = commandName.trim();
         String[] array = commandName.split("\\s+");
         var node = array[0];
-        if (isCommand(node)) {
-            if (isCommandWithArgument(node)) {
-                if (array.length > 2) System.out.println("Wrong argument format");
-                else if (array.length != 2 || array[1] == null || array[1].equals(""))
-                    System.out.println("Missed command argument");
-                else {
-                    String argument = array[1];
-                    CommandWithArgument command = commandsWithArgumentHashMap.get(node);
-                    command.execute(argument);
-                }
-            } else if (array.length == COMMAND_NO_ARG_LENGTH) {
-                CommandWithoutArgument command = commandsWithoutArgumentHashMap.get(commandName);
-                command.execute();
-            } else {
-                System.out.println("This command doesn't contains argument");
-            }
-        } else System.out.println("Command doesn't exists");
+        if (!isCommand(node)) {
+            System.out.println("Command doesn't exists");
+        } else if (isCommandWithoutArgument(node) && array.length != COMMAND_NO_ARG_LENGTH) {
+            System.out.println("This command doesn't contains argument");
+        } else if (isCommandWithoutArgument(node) && array.length == COMMAND_NO_ARG_LENGTH) {
+            CommandWithoutArgument command = commandsWithoutArgumentHashMap.get(commandName);
+            command.execute();
+        } else if (array.length != 2 || array[1] == null || array[1].equals("")) {
+            System.out.println("Wrong argument format");
+        } else {
+            String argument = array[1];
+            CommandWithArgument command = commandsWithArgumentHashMap.get(node);
+            command.execute(argument);
+        }
     }
 
     private boolean isCommandWithArgument(@NotNull String command) {

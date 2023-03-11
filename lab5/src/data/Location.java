@@ -20,21 +20,21 @@ public class Location {
         return x;
     }
 
-    public Integer getY() {
-        return y;
-    }
-
-    public int getZ() {
-        return z;
-    }
-
     public void setX(float x) {
         this.x = x;
+    }
+
+    public Integer getY() {
+        return y;
     }
 
     public void setY(Integer y) {
         if (y != null) this.y = y;
         else throw new WrongDataTypeException();
+    }
+
+    public int getZ() {
+        return z;
     }
 
     public void setZ(int z) {

@@ -1,8 +1,8 @@
-import executionManager.ConsoleManager;
+import executionmanager.CommandPrompt;
 
 public class Main {
     public static void main(String[] args) {
-        ConsoleManager consoleManager = new ConsoleManager();
+        CommandPrompt consoleManager = new CommandPrompt();
         consoleManager.start();
     }
 }
