@@ -9,6 +9,10 @@ import java.util.ArrayList;
 
 public class PrintFieldDescendingFormOfEducationCommand implements CommandWithoutArgument {
 
+    /**
+     * Action for <b>print_field_descending_form_of_education</b> command.
+     * Doesn't receive arguments
+     */
     public void execute() {
         var groups = CollectionManager.getAll();
         ArrayList<FormOfEducation> formOfEducations = new ArrayList<>();

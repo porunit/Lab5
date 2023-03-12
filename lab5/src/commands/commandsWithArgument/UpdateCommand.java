@@ -5,7 +5,12 @@ import executionmanager.CollectionManager;
 import interfaces.CommandWithArgument;
 
 public class UpdateCommand implements CommandWithArgument {
-
+    /**
+     * Action for <b>update</b> command.
+     * Receive arguments
+     *
+     * @param argument command parameter
+     */
     @Override
     public void execute(String argument) {
         long id = 0;

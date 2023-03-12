@@ -15,7 +15,10 @@ import java.util.Stack;
 
 public class LoadCommand implements CommandWithoutArgument {
 
-
+    /**
+     * Action for <b>load</b> command.
+     * Doesn't receive arguments
+     */
     public void execute() {
         String path = CollectionManager.getFilePath();
         Stack<StudyGroup> groupStack = new Stack<>();

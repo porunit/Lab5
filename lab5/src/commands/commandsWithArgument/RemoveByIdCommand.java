@@ -5,6 +5,12 @@ import interfaces.CommandWithArgument;
 
 public class RemoveByIdCommand implements CommandWithArgument {
 
+    /**
+     * Action for <b>remove</b> command.
+     * Receive arguments
+     *
+     * @param argument command parameter
+     */
     public void execute(String argument) {
         long id = 0;
         try {

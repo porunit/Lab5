@@ -6,6 +6,12 @@ import interfaces.CommandWithArgument;
 
 public class AddIfMinCommand implements CommandWithArgument {
 
+    /**
+     * Action for <b>add_if_min</b> command.
+     * Receive arguments
+     *
+     * @param argument command parameter
+     */
     @Override
     public void execute(String argument) {
         long id;

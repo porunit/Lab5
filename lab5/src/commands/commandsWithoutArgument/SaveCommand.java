@@ -10,6 +10,10 @@ import java.io.IOException;
 
 public class SaveCommand implements CommandWithoutArgument {
 
+    /**
+     * Action for <b>save</b> command.
+     * Doesn't receive arguments
+     */
     public void execute() {
         try (FileWriter writer = new FileWriter(CollectionManager.getFilePath());
              BufferedWriter bw = new BufferedWriter(writer)) {

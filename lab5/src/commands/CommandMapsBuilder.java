@@ -9,6 +9,11 @@ import java.util.HashMap;
 
 public class CommandMapsBuilder {
 
+    /**
+     * Creates Hashmap with all commands which <b>contains</b> argument. Where keys - command names and items - command classes.
+     *
+     * @return Hashmap with String keys and CommandWithArgument items
+     */
     public static HashMap buildCommandWithArgumentMap() {
         HashMap<String, CommandWithArgument> commandWithArgumentMap = new HashMap<>();
         commandWithArgumentMap.put("add_if_min", new AddIfMinCommand());
@@ -20,6 +25,11 @@ public class CommandMapsBuilder {
         return commandWithArgumentMap;
     }
 
+    /**
+     * Creates Hashmap with all commands which <b>doesn't contains</b> argument. Where keys - command names and items - command classes.
+     *
+     * @return Hashmap with String keys and CommandWithoutArgument items
+     */
     public static HashMap buildCommandWithoutArgumentMap() {
         HashMap<String, CommandWithoutArgument> commandWithoutArgumentMap = new HashMap<>();
         commandWithoutArgumentMap.put("exit", new ExitCommand());

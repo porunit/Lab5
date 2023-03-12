@@ -7,7 +7,12 @@ import interfaces.CommandWithArgument;
 import java.util.NoSuchElementException;
 
 public class FilterBySemesterEnumCommand implements CommandWithArgument {
-
+    /**
+     * Action for <b>filter_by_semester</b> command.
+     * Receive arguments
+     *
+     * @param argument command parameter
+     */
     public void execute(String argument) {
         Semester semester = null;
         try {

@@ -7,9 +7,13 @@ import java.time.format.DateTimeFormatter;
 
 public class InfoCommand implements CommandWithoutArgument {
 
+    /**
+     * Action for <b>info</b> command.
+     * Doesn't receive arguments
+     */
     public void execute() {
         System.out.println("type: " + CollectionManager.getCollectionType() + "\n" +
-                "creation date: " + java.time.ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "\n" +
+                "creation date: " + CollectionManager.getCreationDate() + "\n" +
                 "size: " + CollectionManager.getAmountElements() +
                 "\n");
     }

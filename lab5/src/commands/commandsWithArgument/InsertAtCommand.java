@@ -5,6 +5,12 @@ import executionmanager.CollectionManager;
 import interfaces.CommandWithArgument;
 
 public class InsertAtCommand implements CommandWithArgument {
+    /**
+     * Action for <b>insert_at</b> command.
+     * Receive arguments
+     *
+     * @param argument command parameter
+     */
     public void execute(String argument) {
         try {
             int index = Integer.parseInt(argument);

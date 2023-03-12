@@ -4,7 +4,12 @@ import executionmanager.CommandProcessor;
 import interfaces.CommandWithArgument;
 
 public class ExecuteScriptCommand implements CommandWithArgument {
-
+    /**
+     * Action for <b>execute_script</b> command.
+     * Receive arguments
+     *
+     * @param argument command parameter
+     */
     @Override
     public void execute(String argument) {
         new CommandProcessor().executionScript(argument);

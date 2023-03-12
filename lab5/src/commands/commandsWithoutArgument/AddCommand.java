@@ -7,6 +7,11 @@ import interfaces.CommandWithoutArgument;
 
 public class AddCommand implements CommandWithoutArgument {
 
+    /**
+     * Creates a new StudyGroup instance based on user input and adds it to the collection
+     *
+     * @return the newly created StudyGroup instance
+     */
     public static StudyGroup add() {
         String name = InputManager.inputString(String.class, "Name(String):", false);
         Float x = InputManager.inputString(Float.class, "Coordinates\nx(Float): ", false, Coordinates.getMinX());
@@ -36,6 +41,10 @@ public class AddCommand implements CommandWithoutArgument {
         return id;
     }
 
+    /**
+     * Action for <b>add</b> command.
+     * Doesn't receive arguments
+     */
     @Override
     public void execute() {
         CollectionManager.add(add());
