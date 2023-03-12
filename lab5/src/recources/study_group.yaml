@@ -1,0 +1,85 @@
+---
+- name: wd
+  coordinates:
+    x: 213.0f
+    "y": 23
+  creationDate: 2023-02-25
+  studentsCount: 123
+  formOfEducation: null
+  semesterEnum: SIXTH
+  groupAdmin:
+    name: 321
+    weight: 213
+    eyeColor: RED
+    location:
+      x: 234.0f
+      "y": 123
+      z: 123
+- id: 2
+  name: weew
+  coordinates:
+    x: 213.0f
+    "y": 321
+  creationDate: 2023-02-25
+  studentsCount: null
+  formOfEducation: null
+  semesterEnum: SECOND
+  groupAdmin:
+    name: we
+    weight: 12
+    eyeColor: RED
+    location:
+      x: 23.0f
+      "y": 123
+      z: 32
+- id: 4
+  name: nsda
+  coordinates:
+    x: 213.0f
+    "y": 23
+  creationDate: 2023-02-25
+  studentsCount: 213
+  formOfEducation: null
+  semesterEnum: SECOND
+  groupAdmin:
+    name: 13
+    weight: 12
+    eyeColor: RED
+    location:
+      x: 23.0f
+      "y": 12
+      z: 3
+- id: 5
+  name: bobik
+  coordinates:
+    x: 42.0f
+    "y": 234
+  creationDate: 2023-03-08
+  studentsCount: null
+  formOfEducation: null
+  semesterEnum: SECOND
+  groupAdmin:
+    name: 13
+    weight: 32
+    eyeColor: RED
+    location:
+      x: 23.0f
+      "y": 1
+      z: 2
+- id: 6
+  name: qwe
+  coordinates:
+    x: 213.0f
+    "y": 3
+  creationDate: 2023-03-08
+  studentsCount: 2
+  formOfEducation: EVENING_CLASSES
+  semesterEnum: SECOND
+  groupAdmin:
+    name: qew
+    weight: 228
+    eyeColor: RED
+    location:
+      x: 123.0f
+      "y": 32
+      z: 123

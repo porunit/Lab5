@@ -1,19 +1,24 @@
 package commands.commandswithoutargument;
 
-import commands.CommandMapsBuilder;
 import interfaces.CommandWithArgument;
 import interfaces.CommandWithoutArgument;
 
 import java.util.HashMap;
+
+import static commands.CommandMapsBuilder.*;
 
 public class HelpCommand implements CommandWithoutArgument {
 
     private HashMap<String, CommandWithoutArgument> commandsWithoutArgumentHashMap;
     private HashMap<String, CommandWithArgument> commandsWithArgumentHashMap;
 
+    /**
+     * Action for <b>help</b> command.
+     * Doesn't receive arguments
+     */
     public void execute() {
-        commandsWithoutArgumentHashMap = CommandMapsBuilder.buildCommandWithoutArgumentMap();
-        commandsWithArgumentHashMap = CommandMapsBuilder.buildCommandWithArgumentMap();
+        commandsWithoutArgumentHashMap = buildCommandWithoutArgumentMap();
+        commandsWithArgumentHashMap = buildCommandWithArgumentMap();
         for (var it : commandsWithArgumentHashMap.values())
             System.out.println(it.getDescription());
         for (var it : commandsWithoutArgumentHashMap.values())
